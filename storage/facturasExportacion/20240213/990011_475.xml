@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<facturaElectronicaComercialExportacionMinera xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="facturaElectronicaComercialExportacionMinera.xsd">
+  <cabecera>
+    <nitEmisor>370883022</nitEmisor>
+    <razonSocialEmisor>COLQUECHACA MINING LTDA.</razonSocialEmisor>
+    <municipio>Oruro</municipio>
+    <telefono>67200160</telefono>
+    <numeroFactura>475</numeroFactura>
+    <cuf>196078FD81B486FD1FBB77B54D2E66F5ECC6B6CAEB082D408CDD58E74</cuf>
+    <cufd>BQVVDLElsQUE=N0kQ0QUU3RDJDRkU=QjlCNDNST0NZVUJMyMzNCRUE0MjEwQ</cufd>
+    <codigoSucursal>0</codigoSucursal>
+    <direccion>AVENIDA MARIA BARZOLA ENTRE CORIHUAYRA Y CELESTINO GUTIERREZ NRO. S\/N ZONA\/BARRIO: ESTE</direccion>
+    <codigoPuntoVenta>1</codigoPuntoVenta>
+    <fechaEmision>2024-02-13T23:33:23.000</fechaEmision>
+    <nombreRazonSocial>TRAFIGURA PTE LTD</nombreRazonSocial>
+    <direccionComprador>OCEAN FINANCIAL CENTRE 65-63192960, 29-00, LIANYUNGANG, CHINA, 10  COLLYER QUAY</direccionComprador>
+    <codigoTipoDocumentoIdentidad>5</codigoTipoDocumentoIdentidad>
+    <numeroDocumento>990011</numeroDocumento>
+    <complemento xsi:nil="true"/>
+    <ruex>92920</ruex>
+    <nim>01-0001-01</nim>
+    <concentradoGranel>CONCENTRADO DE MINERALES Zinc Plata</concentradoGranel>
+    <origen>BOLIVIA</origen>
+    <puertoTransito>Iquique</puertoTransito>
+    <puertoDestino>chile</puertoDestino>
+    <paisDestino>51</paisDestino>
+    <incoterm>EXW - EX Works</incoterm>
+    <codigoCliente>990011</codigoCliente>
+    <montoTotalSujetoIva>0</montoTotalSujetoIva>
+    <codigoMoneda>2</codigoMoneda>
+    <tipoCambio>6.96</tipoCambio>
+    <tipoCambioANB>6.96</tipoCambioANB>
+    <numeroLote>1</numeroLote>
+    <kilosNetosHumedos>5.00</kilosNetosHumedos>
+    <humedadPorcentaje>5.00</humedadPorcentaje>
+    <humedadValor>0.25</humedadValor>
+    <mermaPorcentaje>5.00</mermaPorcentaje>
+    <mermaValor>0.24</mermaValor>
+    <kilosNetosSecos>5</kilosNetosSecos>
+    <codigoMetodoPago>1</codigoMetodoPago>
+    <numeroTarjeta xsi:nil="true"/>
+    <montoTotal>4.38</montoTotal>
+    <montoTotalMoneda>0.63</montoTotalMoneda>
+    <gastosRealizacion>0.51</gastosRealizacion>
+    <otrosDatos xsi:nil="true"/>
+    <descuentoAdicional xsi:nil="true"/>
+    <codigoExcepcion>1</codigoExcepcion>
+    <cafc xsi:nil="true"/>
+    <leyenda>Ley N° 453: Puedes acceder a la reclamación cuando tus derechos han sido vulnerados.</leyenda>
+    <usuario>Kevin</usuario>
+    <codigoDocumentoSector>20</codigoDocumentoSector>
+  </cabecera>
+  <detalle>
+    <actividadEconomica>466201</actividadEconomica>
+    <codigoProductoSin>99100</codigoProductoSin>
+    <codigoProducto>2616.10.00.00</codigoProducto>
+    <codigoNandina>2616.10.00.00</codigoNandina>
+    <descripcion>MINERALES DE PLATA Y SUS CONCENTRADOS LOTE CMV1A/24</descripcion>
+    <descripcionLeyes>10.00</descripcionLeyes>
+    <cantidadExtraccion>10</cantidadExtraccion>
+    <cantidad>0.00145</cantidad>
+    <unidadMedidaExtraccion>22</unidadMedidaExtraccion>
+    <unidadMedida>22</unidadMedida>
+    <precioUnitario>23.92</precioUnitario>
+    <montoDescuento xsi:nil="true"/>
+    <subTotal>0.0347</subTotal>
+  </detalle>
+  <detalle>
+    <actividadEconomica>466201</actividadEconomica>
+    <codigoProductoSin>99100</codigoProductoSin>
+    <codigoProducto>2608.00.00.00</codigoProducto>
+    <codigoNandina>2608.00.00.00</codigoNandina>
+    <descripcion>MINERALES DE ZINC Y SUS CONCENTRADOS LOTE CMV1A/24</descripcion>
+    <descripcionLeyes>10.00</descripcionLeyes>
+    <cantidadExtraccion>10</cantidadExtraccion>
+    <cantidad>0.99484</cantidad>
+    <unidadMedidaExtraccion>22</unidadMedidaExtraccion>
+    <unidadMedida>22</unidadMedida>
+    <precioUnitario>1.11</precioUnitario>
+    <montoDescuento xsi:nil="true"/>
+    <subTotal>1.10427</subTotal>
+  </detalle>
+</facturaElectronicaComercialExportacionMinera>

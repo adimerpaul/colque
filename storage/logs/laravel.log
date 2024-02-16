@@ -1,0 +1,20 @@
+[2024-02-16 07:00:46] local.ERROR: Cannot declare class Cliente, because the name is already in use {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot declare class Cliente, because the name is already in use at C:\\javi\\colquechacamining - impuestos\\database\\migrations\\2023_06_02_162525_cliente.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2024-02-16 07:09:12] local.ERROR: Cannot declare class Cliente, because the name is already in use {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot declare class Cliente, because the name is already in use at C:\\javi\\colquechacamining - impuestos\\database\\migrations\\2023_06_02_162525_cliente.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2024-02-16 07:10:58] local.ERROR: Cannot declare class Proveedor, because the name is already in use {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot declare class Proveedor, because the name is already in use at C:\\javi\\colquechacamining - impuestos\\database\\migrations\\2023_07_09_082312_proveedor.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2024-02-16 07:11:25] local.ERROR: Cannot declare class Movimiento, because the name is already in use {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot declare class Movimiento, because the name is already in use at C:\\javi\\colquechacamining - impuestos\\database\\migrations\\2023_07_09_083033_movimiento.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2024-02-16 07:11:36] local.ERROR: Cannot declare class PagoMovimiento, because the name is already in use {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot declare class PagoMovimiento, because the name is already in use at C:\\javi\\colquechacamining - impuestos\\database\\migrations\\2023_07_10_094610_pago_movimiento.php:7)
+[stacktrace]
+#0 {main}
+"} 
