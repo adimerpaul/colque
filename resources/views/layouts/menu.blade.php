@@ -316,6 +316,12 @@
                 <a href="{{ route('cooperativas.index') }}"><i
                         class="fa fa-institution"></i><span>Exportacion Mineral</span></a>
             </li>
+            <li>
+                <a href="{{ route('evento.index') }}">
+                    <i class="fa fa-institution"></i>
+                    <span>Evento Significativo</span>
+                </a>
+            </li>
         </ul>
     </li>
 

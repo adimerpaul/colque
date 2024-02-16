@@ -344,7 +344,7 @@ Route::group(['middleware' => ['contabilidad']], function () {
 });
 Route::group(['middleware' => ['contabilidadComercialInvitado']], function () {
     Route::resource('cooperativas', App\Http\Controllers\CooperativaController::class, ['except' => ['destroy']]);
-
+    Route::resource('evento', App\Http\Controllers\EventoController::class);
 });
 Route::group(['middleware' => ['contabilidadComercialOperaciones']], function () {
     Route::resource('formularioLiquidacions', App\Http\Controllers\FormularioLiquidacionController::class, ['only' => ['index']]);
