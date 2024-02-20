@@ -50,8 +50,13 @@
                                     Revertir Anulacion
                                 </a>
                                 <div class="dropdown-divider"></div>
+                                    <?php
+                                    $gestion = date('Y', strtotime($venta->fechaEmision));
+                                    $mes = date('m', strtotime($venta->fechaEmision));
+                                    $dia = date('d', strtotime($venta->fechaEmision));
+                                    ?>
                                 <a class='dropdown-item'
-                                   href="{{ url('ventas/ordenVenta', $venta->id) }}"
+                                   href="{{ url("http://192.168.1.105:8003/api/downloadFile?filename=colquechaca/$gestion$mes$dia/$venta->nroFactura.pdf") }}"
                                    target="_blank">
                                     <i class="fa fa-file-text-o"></i>
                                     Reimprimir
