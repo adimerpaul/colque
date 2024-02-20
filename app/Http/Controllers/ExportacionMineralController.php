@@ -439,7 +439,7 @@ class ExportacionMineralController extends Controller
         $carpetaPadre = Env::carpetaBackups;
 
         $carpetaPadre .= "colquechaca";
-        $rutaPdf = GeneratePDF::generate($result['fileSigned'], TipoPdf::pdfOtrosIngresos);
+        $rutaPdf = GeneratePDF::generate($result['fileSigned'], TipoPdf::pdfExportacionMineral);
 
         if (!File::isDirectory($carpetaPadre)) File::makeDirectory($carpetaPadre);
         $fechaCarpeta = "$carpetaPadre/$fechaCarpeta";
