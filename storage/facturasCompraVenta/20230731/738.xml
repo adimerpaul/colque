@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<facturaElectronicaCompraVenta xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="facturaElectronicaCompraVenta.xsd">
+  <cabecera>
+    <nitEmisor>370883022</nitEmisor>
+    <razonSocialEmisor>COLQUECHACA MINING LTDA.</razonSocialEmisor>
+    <municipio>Oruro</municipio>
+    <telefono>67200160</telefono>
+    <numeroFactura>738</numeroFactura>
+    <cuf>196078FD81AD64CE6A6D599B3925C904DC3802994502E84C152EBFD74</cuf>
+    <cufd>BQVVDLElsQUE=NzDExMjkzQTZDRkU=QlUxdjdLQklYVUFczOTY0Q0NCODQ1O</cufd>
+    <codigoSucursal>0</codigoSucursal>
+    <direccion>AVENIDA MARIA BARZOLA ENTRE CORIHUAYRA Y CELESTINO GUTIERREZ NRO. S\/N ZONA\/BARRIO: ESTE</direccion>
+    <codigoPuntoVenta>0</codigoPuntoVenta>
+    <fechaEmision>2023-07-31T15:19:04.000</fechaEmision>
+    <nombreRazonSocial>TRAFIGURA PTE LTD</nombreRazonSocial>
+    <codigoTipoDocumentoIdentidad>5</codigoTipoDocumentoIdentidad>
+    <numeroDocumento>7335394012</numeroDocumento>
+    <complemento xsi:nil="true"/>
+    <codigoCliente>7335394012</codigoCliente>
+    <codigoMetodoPago>1</codigoMetodoPago>
+    <numeroTarjeta xsi:nil="true"/>
+    <montoTotal>50</montoTotal>
+    <montoTotalSujetoIva>50</montoTotalSujetoIva>
+    <codigoMoneda>1</codigoMoneda>
+    <tipoCambio>1</tipoCambio>
+    <montoTotalMoneda>50</montoTotalMoneda>
+    <montoGiftCard xsi:nil="true"/>
+    <descuentoAdicional xsi:nil="true"/>
+    <codigoExcepcion>1</codigoExcepcion>
+    <cafc xsi:nil="true"/>
+    <leyenda>Ley N° 453: Puedes acceder a la reclamación cuando tus derechos han sido vulnerados.</leyenda>
+    <usuario>Kevin</usuario>
+    <codigoDocumentoSector>1</codigoDocumentoSector>
+  </cabecera>
+  <detalle>
+    <actividadEconomica>466201</actividadEconomica>
+    <codigoProductoSin>99100</codigoProductoSin>
+    <codigoProducto>Ag</codigoProducto>
+    <descripcion>MINERALES DE PLATA Y SUS CONCENTRADOS LOTE CMV7A/23</descripcion>
+    <cantidad>5</cantidad>
+    <unidadMedida>62</unidadMedida>
+    <precioUnitario>5</precioUnitario>
+    <montoDescuento xsi:nil="true"/>
+    <subTotal>25</subTotal>
+    <numeroSerie xsi:nil="true"/>
+    <numeroImei xsi:nil="true"/>
+  </detalle>
+  <detalle>
+    <actividadEconomica>466201</actividadEconomica>
+    <codigoProductoSin>99100</codigoProductoSin>
+    <codigoProducto>Zn</codigoProducto>
+    <descripcion>MINERALES DE ZINC Y SUS CONCENTRADOS LOTE CMV7A/23</descripcion>
+    <cantidad>5</cantidad>
+    <unidadMedida>62</unidadMedida>
+    <precioUnitario>5</precioUnitario>
+    <montoDescuento xsi:nil="true"/>
+    <subTotal>25</subTotal>
+    <numeroSerie xsi:nil="true"/>
+    <numeroImei xsi:nil="true"/>
+  </detalle>
+</facturaElectronicaCompraVenta>

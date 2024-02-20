@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<facturaElectronicaCompraVenta xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="facturaElectronicaCompraVenta.xsd">
+  <cabecera>
+    <nitEmisor>370883022</nitEmisor>
+    <razonSocialEmisor>COLQUECHACA MINING LTDA.</razonSocialEmisor>
+    <municipio>Oruro</municipio>
+    <telefono>67200160</telefono>
+    <numeroFactura>707</numeroFactura>
+    <cuf>196078FD81AD6469F26E72BCD5902939F717D34BE959BF502DADBFD74</cuf>
+    <cufd>BQVVDLElsQUE=NzDExMjkzQTZDRkU=QmU4eGNKZUhYVUFczOTY0Q0NCODQ1O</cufd>
+    <codigoSucursal>0</codigoSucursal>
+    <direccion>AVENIDA MARIA BARZOLA ENTRE CORIHUAYRA Y CELESTINO GUTIERREZ NRO. S\/N ZONA\/BARRIO: ESTE</direccion>
+    <codigoPuntoVenta>1</codigoPuntoVenta>
+    <fechaEmision>2023-07-29T11:41:56.000</fechaEmision>
+    <nombreRazonSocial>TRAFIGURA PTE LTD</nombreRazonSocial>
+    <codigoTipoDocumentoIdentidad>5</codigoTipoDocumentoIdentidad>
+    <numeroDocumento>7335394012</numeroDocumento>
+    <complemento xsi:nil="true"/>
+    <codigoCliente>7335394012</codigoCliente>
+    <codigoMetodoPago>1</codigoMetodoPago>
+    <numeroTarjeta xsi:nil="true"/>
+    <montoTotal>50</montoTotal>
+    <montoTotalSujetoIva>50</montoTotalSujetoIva>
+    <codigoMoneda>1</codigoMoneda>
+    <tipoCambio>1</tipoCambio>
+    <montoTotalMoneda>50</montoTotalMoneda>
+    <montoGiftCard xsi:nil="true"/>
+    <descuentoAdicional xsi:nil="true"/>
+    <codigoExcepcion>1</codigoExcepcion>
+    <cafc xsi:nil="true"/>
+    <leyenda>Ley N° 453: Puedes acceder a la reclamación cuando tus derechos han sido vulnerados.</leyenda>
+    <usuario>Kevin</usuario>
+    <codigoDocumentoSector>1</codigoDocumentoSector>
+  </cabecera>
+  <detalle>
+    <actividadEconomica>466201</actividadEconomica>
+    <codigoProductoSin>99100</codigoProductoSin>
+    <codigoProducto>Ag</codigoProducto>
+    <descripcion>MINERALES DE PLATA Y SUS CONCENTRADOS LOTE CMV7A/23</descripcion>
+    <cantidad>5</cantidad>
+    <unidadMedida>62</unidadMedida>
+    <precioUnitario>5</precioUnitario>
+    <montoDescuento xsi:nil="true"/>
+    <subTotal>25</subTotal>
+    <numeroSerie xsi:nil="true"/>
+    <numeroImei xsi:nil="true"/>
+  </detalle>
+  <detalle>
+    <actividadEconomica>466201</actividadEconomica>
+    <codigoProductoSin>99100</codigoProductoSin>
+    <codigoProducto>Zn</codigoProducto>
+    <descripcion>MINERALES DE ZINC Y SUS CONCENTRADOS LOTE CMV7A/23</descripcion>
+    <cantidad>5</cantidad>
+    <unidadMedida>62</unidadMedida>
+    <precioUnitario>5</precioUnitario>
+    <montoDescuento xsi:nil="true"/>
+    <subTotal>25</subTotal>
+    <numeroSerie xsi:nil="true"/>
+    <numeroImei xsi:nil="true"/>
+  </detalle>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+  <SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+    <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+  <Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>LTARpAUowl6peca65G4PcENODocugNNdJ4Ec32+9mGk=</DigestValue></Reference></SignedInfo><SignatureValue>gsyw+QDxCxMeAY6fQ7WX+VbPZyO//5ltH8Pcw+VM99Fjmdnn8N5Rvoh5gowHavE7+0NReEtc5CIAGyqB/MLdY0n+9ujVuPHHGSwv9TrF4Fcw+zFBQH/sxPZ0NNbWfhi880weFrb8KFBNCNAp9QNHSHK/Jfvjl7Q1VMmW86UZlFf0gy15NyxnmZGnctPa8MngNFiDgFDYCi7btkwvIMEfsye2FrKND4otMxEdUPXmSpwh8qA1d5N1bB3cRmi4nyHI+ounNNLqEG0qNLYM29zZfpfhjlcoquLUDShhnJjYUYOTmcqqs7V3sn5Qs4gOwM8c66OxC63FuBJ9OoYpZX18sg==</SignatureValue>
+<KeyInfo><X509Data><X509Certificate>MIIEpjCCA46gAwIBAgIIPh2oJF89rgAwDQYJKoZIhvcNAQEFBQAwgbUxCzAJBgNVBAYTAkJPMQ8wDQYDVQQIDAZMQSBQQVoxDzANBgNVBAcMBkxBIFBBWjEeMBwGA1UECgwVRW50aWRhZCBDZXJ0aWZpY2Fkb3JhMQwwCgYDVQQLDANVSUQxEzARBgNVBAMMCkFEU0lCIEZBS0UxJDAiBgkqhkiG9w0BCQEWFW5jb2FyaXRlQGFkc2liLmdvYi5ibzEbMBkGA1UEBRMSNzM1MjQyNDI0NDY0NjM0MjM0MB4XDTIzMDYyNjE5MTgwMloXDTI0MDYyNTE5MTgwMlowgdwxJDAiBgNVBAMMG0tFVklOIEZFTElYIFBFw4PCkUEgRVNDT0JBUjEgMB4GA1UEChMXQ09MUVVFQ0hBQ0EgTUlOSU5HIExUREExETAPBgNVBAsTCEdFUkVOQ0lBMRgwFgYDVQQMEw9HRVJFTlRFIEdFTkVSQUwxCzAJBgNVBAYTAkJPMQswCQYDVQQuEwJDSTEUMBIGBysGAQEBAQATBzczMzMwMjgxEjAQBgNVBAUTCTM3MDg4MzAyMjEhMB8GCSqGSIb3DQEJARYSbHVrb21la3BAZ21haWwuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA045VKd74eenfHsW9OtMdOyPhhwtGk1DQ6fcdvzsoLssJtito3TLrEWhrZBytkUyZSBTS5tOkY4C/4GxFL4pxluCZyIBp3uwZO580bP62OJAHDKXQBPHaemUB0aiuxVRzl0wjBPnFCA2IhlH4wicsobelPO93jI8cgYVWnfY9pkIZK7DeWb/ZbDy4vviEfqfbqti2qasAZ7TLuDCx25t2XYLYKi8fbKUAEnaUkEuQ/DvKFQvABznUbf3z8t7xob4tK+MYzMNzxTVA2m0oIyjhlYrmLaYO/AuYxOZj7d8wT4KfsEPT8ikcsB/MpAkSUvfND7WOZc4OQXKOxAKfVyzLHQIDAQABo4GQMIGNMAwGA1UdEwQFMAMBAf8wCwYDVR0PBAQDAgTwMB0GA1UdEQQWMBSGEmx1a29tZWtwQGdtYWlsLmNvbTBRBgNVHR8ESjBIMEagRKBChkBodHRwczovL2Rlc2Fycm9sbG8uYWRzaWIuZ29iLmJvL2Rlc2FfYWdlbmNpYS9saXN0X3Jldm9jYWNpb24uY3JsMA0GCSqGSIb3DQEBBQUAA4IBAQCvCcNXU2HMilvbWid7+sk4jNgLgQShvkyiIQ7fYZpUsK4C0oL6IOsKNi1L7wNoMgowoBYGRJCdOKMYPp8gkRHDoMeXzPjDxT6sxtPesCKViJNddMUCQPgVKC9YIUMpAlst9bqd4f1k4XWGY8AuAaJAT6RNhWWF8S13x9erdTQFymQseBLMk8qd+j6vXS/W2nJr5L45Xo/9rGlz5aXINKXmWui+2nM9xh8PBt38VDB6vwANy1Jxw9pyewAHVztet5IhSfBCND6yDfDGSge2OIkqPictQ49su3hS1DpQqHREGbipf5HwMZfKWm1SWau1glFXWxXSqwbFm+Ip4SRkzMcV</X509Certificate></X509Data></KeyInfo></Signature></facturaElectronicaCompraVenta>
