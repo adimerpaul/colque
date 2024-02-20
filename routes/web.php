@@ -351,6 +351,9 @@ Route::group(['middleware' => ['contabilidadComercialInvitado']], function () {
     Route::get('motivoEvento', [App\Http\Controllers\EventoController::class, 'motivoEvento']);
     Route::post('createEvento', [App\Http\Controllers\EventoController::class, 'createEvento']);
     Route::get('createCuf', [App\Http\Controllers\EventoController::class, 'createCuf']);
+//    envioPaquetes
+    Route::post('envioPaquetes', [App\Http\Controllers\EventoController::class, 'envioPaquetes']);
+    Route::post('verificar', [App\Http\Controllers\EventoController::class, 'verificar']);
 });
 Route::group(['middleware' => ['contabilidadComercialOperaciones']], function () {
     Route::resource('formularioLiquidacions', App\Http\Controllers\FormularioLiquidacionController::class, ['only' => ['index']]);

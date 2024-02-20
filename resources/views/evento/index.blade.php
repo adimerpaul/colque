@@ -69,7 +69,7 @@
 <script>
     window.onload = function() {
         $('#fecha_inicio').val(moment().format('YYYY-MM-DD HH:mm:ss'))
-        $('#fecha_fin').val(moment().add(1, 'seconds').format('YYYY-MM-DD HH:mm:ss'));
+        $('#fecha_fin').val(moment().add(2, 'seconds').format('YYYY-MM-DD HH:mm:ss'));
         getEventos()
         getCufs()
         getMotivoEvento()
@@ -106,24 +106,38 @@
             })
         }
 
-        $(document).on('click', '.updateEvento', function() {
+        $(document).on('click', '.envioPaquetes', function() {
             var id = $(this).data('id');
-            updateEvento(id);
+            envioPaquetes(id);
         });
-
-        function updateEvento(id) {
-            console.log(id);
-            /*
+        $(document).on('click', '.verificar', function() {
+            var id = $(this).data('id');
+            verificar(id);
+        });
+        function verificar(id) {
             $.ajax({
-                url: '/updateEvento',
+                url: '/verificar',
                 type: 'POST',
                 data: {id: id, _token: '{{ csrf_token() }}'},
-        success: function (response) {
-            console.log(response);
-            getEventos();
+                success: function (response) {
+                    console.log(response);
+                    // getEventos();
+                }
+            });
         }
-    });
-    */
+
+
+        function envioPaquetes(id) {
+            // console.log(id);
+            $.ajax({
+                url: '/envioPaquetes',
+                type: 'POST',
+                data: {id: id, _token: '{{ csrf_token() }}'},
+                success: function (response) {
+                    console.log(response);
+                    // getEventos();
+                }
+            });
         }
         function getEventos() {
             $.ajax({
@@ -138,7 +152,8 @@
                             <tr>
                                 <td>${cont}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary updateEvento" data-id="${evento.id}">Enviar</button>
+                                    <button type="button" class="btn btn-primary envioPaquetes" data-id="${evento.id}">Enviar</button>
+                                    <button type="button" class="btn btn-info verificar">Verificar</button>
                                 </td>
                                 <td>${evento.fecha_inicio}</td>
                                 <td>${evento.fecha_fin}</td>

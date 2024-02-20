@@ -18,7 +18,8 @@ class CreateEventosTable extends Migration
             $table->string('cufd', 100)->comment("codigo unico de factura digital");
             $table->dateTime('fecha_inicio')->comment("fecha de inicio del evento");
             $table->dateTime('fecha_fin')->comment("fecha de fin del evento");
-            $table->string('codigo', 10)->comment("codigo de evento");
+            $table->string('codigo', 100)->comment("codigo de evento");
+            $table->string('codigo_recepcion', 100)->comment("codigo de evento")->nullable();
             $table->timestamps();
         });
     }
