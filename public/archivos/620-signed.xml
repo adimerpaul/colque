@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<facturaElectronicaComercialExportacionMinera xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="facturaElectronicaComercialExportacionMinera.xsd">
+  <cabecera>
+    <nitEmisor>370883022</nitEmisor>
+    <razonSocialEmisor>COLQUECHACA MINING LTDA.</razonSocialEmisor>
+    <municipio>Oruro</municipio>
+    <telefono>67200160</telefono>
+    <numeroFactura>620</numeroFactura>
+    <cuf>196078FD81B48851CCBF8C2474893C0DE4DF940B8670E6B5CB7F58E74</cuf>
+    <cufd>BQUFVQyxJbEFBN0kQ0QUU3RDJDRkU=Qm/CoXdaT1ZDWVVMyMzNCRUE0MjEwQ</cufd>
+    <codigoSucursal>0</codigoSucursal>
+    <direccion>AVENIDA MARIA BARZOLA ENTRE CORIHUAYRA Y CELESTINO GUTIERREZ NRO. S\/N ZONA\/BARRIO: ESTE</direccion>
+    <codigoPuntoVenta>0</codigoPuntoVenta>
+    <fechaEmision>2024-02-20T14:30:50.000</fechaEmision>
+    <nombreRazonSocial>ADIMER &amp; SRL</nombreRazonSocial>
+    <direccionComprador>OCEAN FINANCIAL CENTRE 65-63192960, 29-00, LIANYUNGANG, CHINA, 10  COLLYER QUAY</direccionComprador>
+    <codigoTipoDocumentoIdentidad>5</codigoTipoDocumentoIdentidad>
+    <numeroDocumento>7336199017</numeroDocumento>
+    <complemento xsi:nil="true"/>
+    <ruex>92920</ruex>
+    <nim>01-0001-01</nim>
+    <concentradoGranel>CONCENTRADO DE MINERALES Plomo Plata</concentradoGranel>
+    <origen>BOLIVIA</origen>
+    <puertoTransito>Antofagasta</puertoTransito>
+    <puertoDestino>chile</puertoDestino>
+    <paisDestino>1</paisDestino>
+    <incoterm>EXW - EX Works</incoterm>
+    <codigoCliente>7336199017</codigoCliente>
+    <montoTotalSujetoIva>0</montoTotalSujetoIva>
+    <codigoMoneda>2</codigoMoneda>
+    <tipoCambio>6.96</tipoCambio>
+    <tipoCambioANB>6.96</tipoCambioANB>
+    <numeroLote>1</numeroLote>
+    <kilosNetosHumedos>315000.00</kilosNetosHumedos>
+    <humedadPorcentaje>10.32</humedadPorcentaje>
+    <humedadValor>32508</humedadValor>
+    <mermaPorcentaje>0.00</mermaPorcentaje>
+    <mermaValor>0</mermaValor>
+    <kilosNetosSecos>282492</kilosNetosSecos>
+    <codigoMetodoPago>1</codigoMetodoPago>
+    <numeroTarjeta xsi:nil="true"/>
+    <montoTotal>4700543.39</montoTotal>
+    <montoTotalMoneda>675365.43</montoTotalMoneda>
+    <gastosRealizacion>552571.72</gastosRealizacion>
+    <otrosDatos xsi:nil="true"/>
+    <descuentoAdicional xsi:nil="true"/>
+    <codigoExcepcion>1</codigoExcepcion>
+    <cafc xsi:nil="true"/>
+    <leyenda>Ley N° 453: Puedes acceder a la reclamación cuando tus derechos han sido vulnerados.</leyenda>
+    <usuario>Kevin</usuario>
+    <codigoDocumentoSector>20</codigoDocumentoSector>
+  </cabecera>
+  <detalle>
+    <actividadEconomica>466201</actividadEconomica>
+    <codigoProductoSin>99100</codigoProductoSin>
+    <codigoProducto>2616.10.00.00</codigoProducto>
+    <codigoNandina>2616.10.00.00</codigoNandina>
+    <descripcion>MINERALES DE PLATA Y SUS CONCENTRADOS LOTE CMV1B/24</descripcion>
+    <descripcionLeyes>5338.00</descripcionLeyes>
+    <cantidadExtraccion>10</cantidadExtraccion>
+    <cantidad>48481.43444</cantidad>
+    <unidadMedidaExtraccion>22</unidadMedidaExtraccion>
+    <unidadMedida>22</unidadMedida>
+    <precioUnitario>24.07</precioUnitario>
+    <montoDescuento xsi:nil="true"/>
+    <subTotal>1166948.12697</subTotal>
+  </detalle>
+  <detalle>
+    <actividadEconomica>466201</actividadEconomica>
+    <codigoProductoSin>99100</codigoProductoSin>
+    <codigoProducto>2607.00.00.00</codigoProducto>
+    <codigoNandina>2607.00.00.00</codigoNandina>
+    <descripcion>MINERALES DE PLOMO Y SUS CONCENTRADOS LOTE CMV1B/24</descripcion>
+    <descripcionLeyes>10.53</descripcionLeyes>
+    <cantidadExtraccion>10</cantidadExtraccion>
+    <cantidad>65579.59354</cantidad>
+    <unidadMedidaExtraccion>22</unidadMedidaExtraccion>
+    <unidadMedida>22</unidadMedida>
+    <precioUnitario>0.93</precioUnitario>
+    <montoDescuento xsi:nil="true"/>
+    <subTotal>60989.02199</subTotal>
+  </detalle>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+  <SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+    <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+  <Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>W/rUA9rTtnu0H2JonmnXNdpCAJKE1+eFHWNHX2XI5P0=</DigestValue></Reference></SignedInfo><SignatureValue>fD9xuAZyrKm+Io3Oe1oxWA9p/5mN15GMJSqST9Dq6qqOkte+PG1XzP2n6fTA6NrRa3mb2IF2Zsoq5Wijt4oPmRmEUY3nL24ZHM0UQE40Bsyk0yHszmO2P9N+es8CRqchkeGHj8NBBANBkfOdF1VFJU3Nq/GiN6g8whsg5dj021SxcfNX85VLmcmS2Fs3M0CkVJcHgdG4NvYnlpqCU1a4m2wLYZOV2jXME9ZKVjjCy9GfT3ZhuemxWI3CbJB5xE5lprnVyDCY7HuBJZ/wBkWG9GJu5CjqNcz7wdHx/ZhtlR0oU9GKUog2Pf2JTR9MHYH9PyO6rJvbwmFMbNUOIbAxeA==</SignatureValue>
+<KeyInfo><X509Data><X509Certificate>MIIEpjCCA46gAwIBAgIIPh2oJF89rgAwDQYJKoZIhvcNAQEFBQAwgbUxCzAJBgNVBAYTAkJPMQ8wDQYDVQQIDAZMQSBQQVoxDzANBgNVBAcMBkxBIFBBWjEeMBwGA1UECgwVRW50aWRhZCBDZXJ0aWZpY2Fkb3JhMQwwCgYDVQQLDANVSUQxEzARBgNVBAMMCkFEU0lCIEZBS0UxJDAiBgkqhkiG9w0BCQEWFW5jb2FyaXRlQGFkc2liLmdvYi5ibzEbMBkGA1UEBRMSNzM1MjQyNDI0NDY0NjM0MjM0MB4XDTIzMDYyNjE5MTgwMloXDTI0MDYyNTE5MTgwMlowgdwxJDAiBgNVBAMMG0tFVklOIEZFTElYIFBFw4PCkUEgRVNDT0JBUjEgMB4GA1UEChMXQ09MUVVFQ0hBQ0EgTUlOSU5HIExUREExETAPBgNVBAsTCEdFUkVOQ0lBMRgwFgYDVQQMEw9HRVJFTlRFIEdFTkVSQUwxCzAJBgNVBAYTAkJPMQswCQYDVQQuEwJDSTEUMBIGBysGAQEBAQATBzczMzMwMjgxEjAQBgNVBAUTCTM3MDg4MzAyMjEhMB8GCSqGSIb3DQEJARYSbHVrb21la3BAZ21haWwuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA045VKd74eenfHsW9OtMdOyPhhwtGk1DQ6fcdvzsoLssJtito3TLrEWhrZBytkUyZSBTS5tOkY4C/4GxFL4pxluCZyIBp3uwZO580bP62OJAHDKXQBPHaemUB0aiuxVRzl0wjBPnFCA2IhlH4wicsobelPO93jI8cgYVWnfY9pkIZK7DeWb/ZbDy4vviEfqfbqti2qasAZ7TLuDCx25t2XYLYKi8fbKUAEnaUkEuQ/DvKFQvABznUbf3z8t7xob4tK+MYzMNzxTVA2m0oIyjhlYrmLaYO/AuYxOZj7d8wT4KfsEPT8ikcsB/MpAkSUvfND7WOZc4OQXKOxAKfVyzLHQIDAQABo4GQMIGNMAwGA1UdEwQFMAMBAf8wCwYDVR0PBAQDAgTwMB0GA1UdEQQWMBSGEmx1a29tZWtwQGdtYWlsLmNvbTBRBgNVHR8ESjBIMEagRKBChkBodHRwczovL2Rlc2Fycm9sbG8uYWRzaWIuZ29iLmJvL2Rlc2FfYWdlbmNpYS9saXN0X3Jldm9jYWNpb24uY3JsMA0GCSqGSIb3DQEBBQUAA4IBAQCvCcNXU2HMilvbWid7+sk4jNgLgQShvkyiIQ7fYZpUsK4C0oL6IOsKNi1L7wNoMgowoBYGRJCdOKMYPp8gkRHDoMeXzPjDxT6sxtPesCKViJNddMUCQPgVKC9YIUMpAlst9bqd4f1k4XWGY8AuAaJAT6RNhWWF8S13x9erdTQFymQseBLMk8qd+j6vXS/W2nJr5L45Xo/9rGlz5aXINKXmWui+2nM9xh8PBt38VDB6vwANy1Jxw9pyewAHVztet5IhSfBCND6yDfDGSge2OIkqPictQ49su3hS1DpQqHREGbipf5HwMZfKWm1SWau1glFXWxXSqwbFm+Ip4SRkzMcV</X509Certificate></X509Data></KeyInfo></Signature></facturaElectronicaComercialExportacionMinera>

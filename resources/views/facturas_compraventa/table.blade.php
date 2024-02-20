@@ -28,7 +28,7 @@
                 <td>{{ $venta->nroFactura}}</td>
                 <td>{{ $venta->cuf}}</td>
                 <td>{{ $venta->cufd}}</td>
-                <td>{{ date('d/m/y', strtotime($venta->fechaEmision)) }}</td>
+                <td>{{ $venta->fechaEmision }}</td>
                 <td>{{ $venta->montoTotal}}</td>
                 <td>{{ $venta->es_anulado}}</td>
                 <td>{{ $venta->tipo_factura}}</td>
@@ -56,7 +56,7 @@
                                     $dia = date('d', strtotime($venta->fechaEmision));
                                     ?>
                                 <a class='dropdown-item'
-                                   href="{{ url("http://127.0.0.1:8001/api/downloadFile?filename=colquechaca/$gestion$mes$dia/$venta->nroFactura.pdf") }}"
+                                   href="{{ url("http://192.168.0.13:8001/api/downloadFile?filename=colquechaca/$gestion$mes$dia/$venta->nroFactura.pdf") }}"
                                    target="_blank">
                                     <i class="fa fa-file-text-o"></i>
                                     Reimprimir
