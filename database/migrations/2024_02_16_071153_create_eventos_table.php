@@ -20,6 +20,7 @@ class CreateEventosTable extends Migration
             $table->dateTime('fecha_fin')->comment("fecha de fin del evento");
             $table->string('codigo', 100)->comment("codigo de evento");
             $table->string('codigo_recepcion', 100)->comment("codigo de evento")->nullable();
+            $table->string('tipo', 100)->comment("['Compra Venta','mineral]");
             $table->timestamps();
         });
     }

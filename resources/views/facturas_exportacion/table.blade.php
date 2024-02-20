@@ -44,14 +44,19 @@
                             <div class="dropdown-menu">
                                 <div class="dropdown-divider"></div>
                                 <a class='dropdown-item'
-                                   href="{{ url('anularCompraVenta', $venta->cufd) }}"
-                                   target="_blank">
+                                   href="{{ url('revertirExportacionMineral', $venta->cuf) }}"
+                                   >
                                     <i class="glyphicon glyphicon-file"></i>
-                                    Anular
+                                    Revertir Anulacion
                                 </a>
                                 <div class="dropdown-divider"></div>
+                                    <?php
+                                    $gestion = date('Y', strtotime($venta->fechaEmision));
+                                    $mes = date('m', strtotime($venta->fechaEmision));
+                                    $dia = date('d', strtotime($venta->fechaEmision));
+                                    ?>
                                 <a class='dropdown-item'
-                                   href="{{ url('ventas/ordenVenta', $venta->id) }}"
+                                   href="{{ url("http://192.168.1.105:8003/api/downloadFile?filename=colquechaca/$gestion$mes$dia/$venta->nroFactura.pdf") }}"
                                    target="_blank">
                                     <i class="fa fa-file-text-o"></i>
                                     Reimprimir
@@ -63,7 +68,7 @@
                                    data-txtid="{{$venta->cuf}}"
                                    data-toggle="modal" data-target="#modalFactura">
                                     <i class="glyphicon glyphicon-usd"></i>
-                                    Generar factura
+                                    Anular factura
                                 </a>
                             </div>
 

@@ -173,11 +173,12 @@ class CompraVentaController extends Controller
         Cui::whereCodigo($cuisActual)->update(['numero_factura' => $numeroFactura]);
         $cuf = $this->generateCUF($fechaActual, $numeroFactura, $cufActual->codigo_control, TipoFactura::FacturaConDerechoACreditoFiscal, CodigoEmision::EnLinea);
 
-        $compraVenta = $this->store($request, $cufActual, $cuisActual, $cuf, $numeroFactura, $fechaActual);
         //return $compraVenta;
             $result = $this->generarXML($request, $fechaCarpeta, $fechaActual, $numeroFactura, $cuf, $cufActual);
             //return $result;
             if (!$result['success']) {
+
+
                 DB::rollback();
                 return response()->json([
                     "success" => false,
@@ -185,6 +186,8 @@ class CompraVentaController extends Controller
                 ]);
             }
             else {
+
+
                 DB::commit();
                 //return "facturasLey/20221118/" . $result['fileName'];
 
@@ -197,26 +200,40 @@ class CompraVentaController extends Controller
                 //return $ley;
                 //exit;
                 $resultImpuestos = (new ServicioFacturacionController($this->codigoDocumentoSector, $this->codigoPuntoVenta))->recepcionEnLineaCompraVenta($ley);
-                var_dump($resultImpuestos->RespuestaServicioFacturacion);
-                //exit;
-                if ($resultImpuestos->RespuestaServicioFacturacion->transaccion) {
-                    $this->purgeFiles($result, $comprimido, $numeroFactura, $fechaCarpeta);
-                    DB::commit();
-                    $carpetaPadre = "colquechaca";
-                    return response()->json([
-                        "success" => true,
-                        "message" => "factura documento ajuste generado y emitido correctamente",
-                        "factura" => $ley,
-                        "url" => "$carpetaPadre/" . $fechaCarpeta . "/" . $numeroFactura . ".pdf"
-                    ]);
-                } else {
-                    DB::rollback();
-                    return response()->json([
-                        "success" => false,
-                        "message" => "A ocurrido un error, revise los datos y vuelva a intentarlo",
-                        "errors" => $resultImpuestos
-                    ]);
-                }
+               if (!$resultImpuestos){
+                   $compraVenta = $this->storeOfflne($request, $cufActual, $cuisActual, $cuf, $numeroFactura, $fechaActual);
+                   $this->createPdfOffLine($result, $numeroFactura, $fechaCarpeta);
+               }
+               else {
+
+
+                   var_dump($resultImpuestos->RespuestaServicioFacturacion);
+                   //exit;
+                   if ($resultImpuestos->RespuestaServicioFacturacion->transaccion) {
+
+
+                       $compraVenta = $this->store($request, $cufActual, $cuisActual, $cuf, $numeroFactura, $fechaActual);
+
+                       $this->purgeFiles($result, $comprimido, $numeroFactura, $fechaCarpeta);
+                       DB::commit();
+                       $carpetaPadre = "colquechaca";
+                       return response()->json([
+                           "success" => true,
+                           "message" => "factura documento ajuste generado y emitido correctamente",
+                           "factura" => $ley,
+                           "url" => "$carpetaPadre/" . $fechaCarpeta . "/" . $numeroFactura . ".pdf"
+                       ]);
+                   } else {
+
+
+                       DB::rollback();
+                       return response()->json([
+                           "success" => false,
+                           "message" => "A ocurrido un error, revise los datos y vuelva a intentarlo",
+                           "errors" => $resultImpuestos
+                       ]);
+                   }
+               }
             }
 
 //        } catch (\Exception $e) {
@@ -287,6 +304,38 @@ class CompraVentaController extends Controller
         return $ley;
     }
 
+
+    public function storeOfflne($request, $cufActual, $cuisActual, $cuf, $numeroFactura, $fechaActual)
+    {
+        //$cufActual = $this->getCufd();
+        //$cuisActual = $this->getCui();
+        //$numeroFactura = $this->getNumeroLey($cuisActual);
+
+        //$fechaActual = date("Y-m-d\TH:i:s.v", time());
+        //$leyPrivilegio = $this->dbf->leyPrivilegio();
+
+        //Cui::whereCodigo($cuisActual)->update(['numero_factura' => $numeroFactura]);
+
+        $ley = FacturasImpuestos::create([
+            'mes' => $request['mes'],
+            'gestion' => $request['anio'],
+            'nroFactura' => $numeroFactura,
+            'cuf' => $cuf,
+            'cufd' => $cufActual->codigo,
+            'fechaEmision' => $fechaActual,
+            'nombreRazonSocial' => $request['nombre_razon_social'],
+            'numeroDocumento' => $request['numero_documento'],
+            'montoTotal' => $request['monto_total'],
+            'leyenda' => "Ley N° 453: Puedes acceder a la reclamación cuando tus derechos han sido vulnerados.",
+            'cuis' => $cuisActual,
+            'es_enviado' => false,
+            'es_anulado' => false,
+            'tipo_factura' => 'CompraVenta',
+            'user_id' => 1
+        ]);
+
+        return $ley;
+    }
     public function getNumeroLey($cuis)
     {
         //$maximo = LeyPrivilegio::whereCuis($cuis)->max('nroFactura');
@@ -318,6 +367,30 @@ class CompraVentaController extends Controller
             }
     }
 
+
+    public function resvertirCompraVenta($id)
+    {
+         //return $id;
+        $cuf = $id;
+        $codigoPuntoVenta = 0;
+        $codigoDocumentoSector = DocumentoSector::CompraVenta;
+        //$codigoMotivo = $request['codigoMotivo'];
+
+        $facturacion = new ServicioFacturacionController($codigoDocumentoSector, $codigoPuntoVenta);
+
+        $resultImpuestos = $facturacion->reversionFacturaCompraVenta($cuf);
+
+        if ($resultImpuestos->transaccion) {
+//            var_dump($resultImpuestos);
+
+            FacturasImpuestos::whereCuf($cuf)->update(['es_anulado' => false]);
+
+            return response()->json(["success" => true, "message" => $resultImpuestos]);
+        } else {
+            $seEnvioemail = false;
+            return response()->json(["success" => false, "message" => $resultImpuestos, "error" => $resultImpuestos->mensajesList, "email" => $seEnvioemail ? "Correo enviado al cliente" : "NO se ha enviado correo al cliente, vuelva a intentarlo o revise el email del cliente"]);
+        }
+    }
     /**
      * Display the specified resource.
      *
@@ -380,5 +453,22 @@ class CompraVentaController extends Controller
 //
         unlink( substr($result['fileSigned'], 0, -11) . ".xml");
         unlink($comprimido);
+    }
+
+    public function createPdfOffLine(array $result, $numeroFactura, $fechaCarpeta): void
+    {
+        $carpetaPadre = Env::carpetaBackups;
+
+        $carpetaPadre .= "colquechaca";
+        $rutaPdf = GeneratePDF::generate($result['fileSigned'], TipoPdf::pdfOtrosIngresos);
+
+        if (!File::isDirectory($carpetaPadre)) File::makeDirectory($carpetaPadre);
+        $fechaCarpeta = "$carpetaPadre/$fechaCarpeta";
+        if (!File::isDirectory($fechaCarpeta)) File::makeDirectory($fechaCarpeta);
+
+        if (File::isFile($result['fileSigned'])) {
+            rename($result['fileSigned'], "$fechaCarpeta/$numeroFactura.xml");
+            rename($rutaPdf, "$fechaCarpeta/$numeroFactura.pdf");
+        }
     }
 }

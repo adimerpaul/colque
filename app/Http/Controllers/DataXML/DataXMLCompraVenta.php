@@ -32,7 +32,7 @@ class DataXMLCompraVenta
             "direccion" => Env::direccion,
             "codigoPuntoVenta" => $this->codigoPuntoVenta,
             "fechaEmision" => $fechaActual,
-            "nombreRazonSocial" => $xml->nombre_razon_social,
+            "nombreRazonSocial" =>  str_replace("&","&amp;",trim($xml->nombre_razon_social)),
             "codigoTipoDocumentoIdentidad" => strlen(trim($xml->numero_documento)) > 8 ? 5 : 1,
             "numeroDocumento" => $xml->numero_documento,
             "complemento" => null,

@@ -10,6 +10,7 @@ use App\Http\Controllers\Impuestos\ServicioCodigoController;
 use App\Models\Cufd;
 use App\Models\Evento;
 use App\Models\FacturasImpuestos;
+use App\Models\VentaFactura;
 use App\Patrones\CodigoEmision;
 use App\Patrones\Env;
 use App\Patrones\Fachada;
@@ -95,6 +96,7 @@ class EventoController extends ControllerSoap{
         $evento->fecha_inicio = $fecha_inicio;
         $evento->fecha_fin = $fecha_fin;
         $evento->codigo = $codigo;
+        $evento->tipo = $request->tipo;
         $evento->save();
         return $evento;
     }
@@ -170,17 +172,25 @@ class EventoController extends ControllerSoap{
         $fecha_inicio = $evento->fecha_inicio;
         $fecha_fin = $evento->fecha_fin;
 
+        if ($evento->tipo==="Compra Venta"){
+            $codigoDocumentoSector = 1;
+            $tipoFacturaDocumento = 1;
+        }
+        else{
+            $codigoDocumentoSector = 20;
+            $tipoFacturaDocumento = 2;
+        }
         $facturas_impuestos = FacturasImpuestos::where('fechaEmision', '>=', $fecha_inicio)
             ->where('fechaEmision', '<=', $fecha_fin)
             ->where('es_enviado', 0)
             ->get();
 
-        $this->generateXML($evento, $facturas_impuestos);
+//        $this->generateXML($evento, $facturas_impuestos);
 
         $archiveName = "archivos.tar";
 //        delete archivos
 
-        $this->createZip($archiveName);
+        $this->createZip($archiveName,$facturas_impuestos);
         $archivo=$this->getFileGzip($archiveName.".gz");
         $hashArchivo=hash('sha256', $archivo);
 
@@ -190,7 +200,7 @@ class EventoController extends ControllerSoap{
         $params = array(
             "SolicitudServicioRecepcionPaquete" => [
                 "codigoAmbiente"=>Env::codigoAmbiente,
-                "codigoDocumentoSector"=>1,
+                "codigoDocumentoSector"=>$codigoDocumentoSector,
                 "codigoEmision"=>2,//1 online 2 offline
                 "codigoModalidad"=>1,//1 electronica 2 computarizada
                 "codigoPuntoVenta"=>0,
@@ -199,7 +209,7 @@ class EventoController extends ControllerSoap{
                 "cufd"=>$cufActual->codigo,
                 "cuis"=>$cuisActual,
                 "nit"=>Env::nit,
-                "tipoFacturaDocumento"=>1,
+                "tipoFacturaDocumento"=>$tipoFacturaDocumento,
                 "archivo"=>$archivo,
                 "fechaEnvio"=>date("Y-m-d\TH:i:s.000"),
                 "hashArchivo"=>$hashArchivo,
@@ -226,7 +236,7 @@ class EventoController extends ControllerSoap{
 
         return $contents;
     }
-    public function createZip($archiveName){
+    public function createZip($archiveName,$facturas_impuestos){
         if (file_exists(public_path('archivos.tar')))
             unlink(public_path('archivos.tar'));
         if (file_exists(public_path('archivos.tar.gz')))
@@ -237,12 +247,22 @@ class EventoController extends ControllerSoap{
         // ADD FILES TO archive.tar FILE
         $files = glob(public_path('archivos/*'));
         $count = 0;
-        foreach($files as $file){
-//            error_log('creando zip: '.$file);
-            $a->addFile($file); //Agregamos el fichero
-            $count++;
-            echo $count."\n";
+        foreach($facturas_impuestos as $f){
+            //existe el archivo firmado
+            if (is_file(public_path('archivos/'.$f->nroFactura.'-signed.xml'))){
+                $a->addFile(public_path('archivos/'.$f->nroFactura.'-signed.xml')); //Agregamos el fichero
+                $count++;
+                echo $count."\n";
+            }
+//            $a->addFile($file); //Agregamos el fichero
+//            $count++;
+//            echo $count."\n";
         }
+//        foreach($files as $file){
+//            $a->addFile($file); //Agregamos el fichero
+//            $count++;
+//            echo $count."\n";
+//        }
 
         // COMPRESS archive.tar FILE. COMPRESSED FILE WILL BE archive.tar.gz
         $a->compress(Phar::GZ);
@@ -253,9 +273,7 @@ class EventoController extends ControllerSoap{
 
         $this->deleteFieldsArchivos();
         foreach ($facturas_impuestos as $f) {
-//            $miliSegundo=str_pad($i, 3, '0', STR_PAD_LEFT);
-//            $fechaEnvio=date("Y-m-d\T$h:$m:$s").".$miliSegundo";
-            $fecha1 = new DateTime($f->fecha_emision);
+            $fecha1 = new DateTime($f->fechaEmision);
             $fechaEnvio = $fecha1->format("Y-m-d\TH:i:s.000");
             $fechaCuf = $fecha1->format("YmdHis.000");//            $cuf = $cuf->obtenerCUF($nit, date("Ymd".$h.$m.$s."$miliSegundo"), $codigoSucursal, $codigoModalidad, $codigoEmision, $cdf, $codigoDocumentoSector, $nf, $codigoPuntoVenta);
 //            $cuf = $this->generateCUF($fechaActual, $numeroFactura, $cufActual->codigo_control, TipoFactura::FacturaConDerechoACreditoFiscal, CodigoEmision::EnLinea);

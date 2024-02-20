@@ -18,6 +18,7 @@
                         <th style="width: 10px">#</th>
                         <th>Opciones</th>
                         <th>Codigo Evento</th>
+                        <th>Tipo Evento</th>
                         <th>Fecha_inicio</th>
                         <th>Fecha_fin</th>
                         <th>Cuf</th>
@@ -40,6 +41,13 @@
                                     <div class="form-group">
                                         <label for="cuf">Cuf</label>
                                         <select class="form-control" id="cuf"></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tipo">Tipo Evento</label>
+                                        <select class="form-control" id="tipo">
+                                            <option value="Compra Venta">Compra Venta</option>
+                                            <option value="Mineral">Mineral</option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="motivo">Motivo</label>
@@ -98,6 +106,7 @@
                 fecha_inicio: $('#fecha_inicio').val(),
                 fecha_fin: $('#fecha_fin').val(),
                 motivo: $('#motivo').val(),
+                tipo: $('#tipo').val(),
                 _token: '{{ csrf_token() }}'
             }
             $.ajax({
@@ -183,6 +192,7 @@
                                     <button type="button" class="btn btn-info verificar" data-id="${evento.id}">Verificar</button>
                                 </td>
                                 <td>${evento.codigo_recepcion}</td>
+                                <td>${evento.tipo}</td>
                                 <td>${evento.fecha_inicio}</td>
                                 <td>${evento.fecha_fin}</td>
                                 <td>${evento.cufd}</td>
