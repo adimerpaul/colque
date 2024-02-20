@@ -44,6 +44,9 @@ class XMLExportacionMineral extends XMLbase
         $dataS = "D:\datosSiat\archivos/$fileName";
         $dom->save($dataS);
 
+        $dataS = public_path("archivos/$fileName");
+        $dom->save($dataS);
+
         $xmlFileSigned = self::firmarXml($xmlFile, $dataS);
 
         if (!$validation->validate($xmlFileSigned, "$type/$name.xsd")) {

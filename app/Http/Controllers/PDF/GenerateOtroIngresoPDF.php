@@ -9,7 +9,7 @@ use App\Patrones\Env;
 
 class GenerateOtroIngresoPDF
 {
-    public static function generateHTML($xml, $cuf,$complemento): string
+    public static function generateHTML($xml, $cuf,$complemento, $enLinea): string
     {
         $formatter = new NumeroALetras();
         $literal = $formatter->toInvoice((float)$xml->cabecera->montoTotal, 2, 'Bolivianos');
