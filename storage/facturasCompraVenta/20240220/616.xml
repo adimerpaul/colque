@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<facturaElectronicaCompraVenta xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="facturaElectronicaCompraVenta.xsd">
+  <cabecera>
+    <nitEmisor>370883022</nitEmisor>
+    <razonSocialEmisor>COLQUECHACA MINING LTDA.</razonSocialEmisor>
+    <municipio>Oruro</municipio>
+    <telefono>67200160</telefono>
+    <numeroFactura>616</numeroFactura>
+    <cuf>196078FD81B48851288046D4CCD60EB0093F4871015A2191AA7F58E74</cuf>
+    <cufd>BQVVDLElsQUE=N0kQ0QUU3RDJDRkU=Qj4yQ2lNVkNZVUFMyMzNCRUE0MjEwQ</cufd>
+    <codigoSucursal>0</codigoSucursal>
+    <direccion>AVENIDA MARIA BARZOLA ENTRE CORIHUAYRA Y CELESTINO GUTIERREZ NRO. S\/N ZONA\/BARRIO: ESTE</direccion>
+    <codigoPuntoVenta>0</codigoPuntoVenta>
+    <fechaEmision>2024-02-20T13:00:37.000</fechaEmision>
+    <nombreRazonSocial>Luna Espinoza Beimar Bruno</nombreRazonSocial>
+    <codigoTipoDocumentoIdentidad>5</codigoTipoDocumentoIdentidad>
+    <numeroDocumento>83001340130136</numeroDocumento>
+    <complemento xsi:nil="true"/>
+    <codigoCliente>83001340130136</codigoCliente>
+    <codigoMetodoPago>1</codigoMetodoPago>
+    <numeroTarjeta xsi:nil="true"/>
+    <montoTotal>10.00</montoTotal>
+    <montoTotalSujetoIva>10.00</montoTotalSujetoIva>
+    <codigoMoneda>1</codigoMoneda>
+    <tipoCambio>1</tipoCambio>
+    <montoTotalMoneda>10.00</montoTotalMoneda>
+    <montoGiftCard xsi:nil="true"/>
+    <descuentoAdicional xsi:nil="true"/>
+    <codigoExcepcion>1</codigoExcepcion>
+    <cafc xsi:nil="true"/>
+    <leyenda>Ley N° 453: Puedes acceder a la reclamación cuando tus derechos han sido vulnerados.</leyenda>
+    <usuario>Kevin</usuario>
+    <codigoDocumentoSector>1</codigoDocumentoSector>
+  </cabecera>
+  <detalle>
+    <actividadEconomica>466201</actividadEconomica>
+    <codigoProductoSin>99100</codigoProductoSin>
+    <codigoProducto>2609.00.00.00</codigoProducto>
+    <descripcion>MINERALES DE ESTAÑO Y SUS CONCENTRADOS LOTE CMV16D/24</descripcion>
+    <cantidad>1</cantidad>
+    <unidadMedida>62</unidadMedida>
+    <precioUnitario>10.00</precioUnitario>
+    <montoDescuento xsi:nil="true"/>
+    <subTotal>10.00</subTotal>
+    <numeroSerie xsi:nil="true"/>
+    <numeroImei xsi:nil="true"/>
+  </detalle>
+</facturaElectronicaCompraVenta>

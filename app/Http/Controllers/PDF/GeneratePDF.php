@@ -43,17 +43,17 @@ class GeneratePDF
         $enLinea = $factura->es_enviado;
 
         if ($type == TipoPdf::pdfOtrosIngresos) {
-            $html = GenerateOtroIngresoPDF::generateHTML($xml, $cuf,$complemento);
+            $html = GenerateOtroIngresoPDF::generateHTML($xml, $cuf,$complemento, $enLinea);
         } else if ($type == TipoPdf::pdfConciliacion) {
-            $html = GenerateConciliacionPDF::generateHTML($xml, $cuf,$complemento);
+            $html = GenerateConciliacionPDF::generateHTML($xml, $cuf,$complemento, $enLinea);
         } else if ($type == TipoPdf::pdfCreditoDebito) {
-            $html = GenerateCreditoDebitoPDF::generateHTML($xml, $cuf,$complemento);
+            $html = GenerateCreditoDebitoPDF::generateHTML($xml, $cuf,$complemento, $enLinea);
         } else if ($type == TipoPdf::pdfServicioBasico) {
-            $html = GenerateServicioBasicoPDF::generateHTML($xml, $cuf,$complemento);
+            $html = GenerateServicioBasicoPDF::generateHTML($xml, $cuf,$complemento, $enLinea);
         } else if ($type == TipoPdf::pdfLibreConsignacion) {
-            $html = GenerateLibreConsignacionPDF::generateHTML($xml, $cuf,$complemento, $tipoMoneda);
+            $html = GenerateLibreConsignacionPDF::generateHTML($xml, $cuf,$complemento, $tipoMoneda, $enLinea);
         } else if ($type == TipoPdf::pdfExportacionMineral) {
-            $html = GenerateExportacionMineralPDF::generateHTML($xml, $cuf,$complemento, $tipoMoneda);
+            $html = GenerateExportacionMineralPDF::generateHTML($xml, $cuf,$complemento, $tipoMoneda, $enLinea);
         }
 
 

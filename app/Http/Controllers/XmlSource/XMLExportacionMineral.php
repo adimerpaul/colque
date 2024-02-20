@@ -36,12 +36,15 @@ class XMLExportacionMineral extends XMLbase
 
         $cuenta = $request['cabecera']['codigoCliente'];
         $tarifa = $request['cabecera']['numeroFactura'];
-        $fileName = "{$cuenta}_$tarifa.xml";
+        $fileName = "$tarifa.xml";
         $xmlFile = "$type/$ciclo/$fileName";
         error_log($xmlFile);
         $dom->save($xmlFile);
 
         $dataS = "C:\datosSiat\archivos/$fileName";
+        $dom->save($dataS);
+
+        $dataS = public_path("archivos/$fileName");
         $dom->save($dataS);
 
         $xmlFileSigned = self::firmarXml($xmlFile, $dataS);
