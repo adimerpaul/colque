@@ -199,25 +199,32 @@ class ServicioFacturacionController extends ControllerSoap
         $result = $client->recepcionFactura($params);
         return $result;
     }
+
     public function recepcionEnLineaExportacionMineral($request)
     {
         $fileName = $request['fileName'];
 
-        $archivo = $this->getFileGzipIndividual($fileName);
-        $hash256 = hash('sha256', $archivo);
+        try {
 
-        $fechaEnvio = $request['fechaEmision'];
-        $client = $this->getClient($this->wsdl);
-        $params = array(
-            "SolicitudServicioRecepcionFactura" => $this->getParamsExportacionMineral(CodigoEmision::EnLinea) + [
-                    "archivo" => $archivo,
-                    "fechaEnvio" => $fechaEnvio,
-                    "hashArchivo" => $hash256,
-                ]
-        );
+            $archivo = $this->getFileGzipIndividual($fileName);
+            $hash256 = hash('sha256', $archivo);
 
-        $result = $client->recepcionFactura($params);
-        return $result;
+            $fechaEnvio = $request['fechaEmision'];
+            $client = $this->getClient($this->wsdl);
+            $params = array(
+                "SolicitudServicioRecepcionFactura" => $this->getParamsExportacionMineral(CodigoEmision::EnLinea) + [
+                        "archivo" => $archivo,
+                        "fechaEnvio" => $fechaEnvio,
+                        "hashArchivo" => $hash256,
+                    ]
+            );
+
+            $result = $client->recepcionFactura($params);
+            return $result;
+
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 
     public function recepcionEnLineaLey($request)

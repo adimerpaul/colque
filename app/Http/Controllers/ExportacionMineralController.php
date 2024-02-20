@@ -175,7 +175,6 @@ class ExportacionMineralController extends Controller
         Cui::whereCodigo($cuisActual)->update(['numero_factura' => $numeroFactura]);
         $cuf = $this->generateCUF($fechaActual, $numeroFactura, $cufActual->codigo_control, TipoFactura::FacturaSinDerechoACreditoFiscal, CodigoEmision::EnLinea);
 
-        $exportacionMineral = $this->store($request, $cufActual, $cuisActual, $cuf, $numeroFactura, $fechaActual);
 
             $result = $this->generarXML($request, $fechaCarpeta, $fechaActual, $numeroFactura, $cuf, $cufActual);
             //return $result;
@@ -198,25 +197,34 @@ class ExportacionMineralController extends Controller
                 $ley['nroFactura'] = $numeroFactura;
                 //return $ley;
                 $resultImpuestos = (new ServicioFacturacionController($this->codigoDocumentoSector, $this->codigoPuntoVenta))->recepcionEnLineaExportacionMineral($ley);
-                var_dump($resultImpuestos->RespuestaServicioFacturacion);
-               // exit;
-                if ($resultImpuestos->RespuestaServicioFacturacion->transaccion) {
-                    $this->purgeFiles($result, $comprimido, $numeroFactura, $fechaCarpeta);
-                    DB::commit();
-                    $carpetaPadre = "colquechaca";
-                    return response()->json([
-                        "success" => true,
-                        "message" => "factura documento ajuste generado y emitido correctamente",
-                        "factura" => $ley,
-                        "url" => "$carpetaPadre/" . $fechaCarpeta . "/" . $numeroFactura . ".pdf"
-                    ]);
+
+                if (!$resultImpuestos) {
+                    $compraVenta = $this->storeOffLine($request, $cufActual, $cuisActual, $cuf, $numeroFactura, $fechaActual);
+                    $this->createPdfOffLine($result, $numeroFactura, $fechaCarpeta);
                 } else {
-                    DB::rollback();
-                    return response()->json([
-                        "success" => false,
-                        "message" => "A ocurrido un error, revise los datos y vuelva a intentarlo",
-                        "errors" => $resultImpuestos
-                    ]);
+                    var_dump($resultImpuestos->RespuestaServicioFacturacion);
+                    // exit;
+                    if ($resultImpuestos->RespuestaServicioFacturacion->transaccion) {
+
+                        $exportacionMineral = $this->store($request, $cufActual, $cuisActual, $cuf, $numeroFactura, $fechaActual);
+
+                        $this->purgeFiles($result, $comprimido, $numeroFactura, $fechaCarpeta);
+                        DB::commit();
+                        $carpetaPadre = "colquechaca";
+                        return response()->json([
+                            "success" => true,
+                            "message" => "factura documento ajuste generado y emitido correctamente",
+                            "factura" => $ley,
+                            "url" => "$carpetaPadre/" . $fechaCarpeta . "/" . $numeroFactura . ".pdf"
+                        ]);
+                    } else {
+                        DB::rollback();
+                        return response()->json([
+                            "success" => false,
+                            "message" => "A ocurrido un error, revise los datos y vuelva a intentarlo",
+                            "errors" => $resultImpuestos
+                        ]);
+                    }
                 }
             }
 
@@ -274,6 +282,29 @@ class ExportacionMineralController extends Controller
             'leyenda' => "Ley N° 453: Puedes acceder a la reclamación cuando tus derechos han sido vulnerados.",
             'cuis' => $cuisActual,
             'es_enviado' => true,
+            'es_anulado' => false,
+            'tipo_factura' => 'ExportacionMineral',
+            'user_id' => 1
+        ]);
+
+        return $ley;
+    }
+
+    public function storeOffLine($request,  $cufActual, $cuisActual, $cuf, $numeroFactura, $fechaActual)
+    {
+        $ley = FacturasImpuestos::create([
+            'mes' => $request['mes'],
+            'gestion' => $request['anio'],
+            'nroFactura' => $numeroFactura,
+            'cuf' => $cuf,
+            'cufd' => $cufActual->codigo,
+            'fechaEmision' => $fechaActual,
+            'nombreRazonSocial' => 'SIN RAZON SOCIAL',
+            'numeroDocumento' => $request['numero_documento'],
+            'montoTotal' => $request['monto_total'],
+            'leyenda' => "Ley N° 453: Puedes acceder a la reclamación cuando tus derechos han sido vulnerados.",
+            'cuis' => $cuisActual,
+            'es_enviado' => false,
             'es_anulado' => false,
             'tipo_factura' => 'ExportacionMineral',
             'user_id' => 1
@@ -401,5 +432,22 @@ class ExportacionMineralController extends Controller
 //
         unlink( substr($result['fileSigned'], 0, -11) . ".xml");
         unlink($comprimido);
+    }
+
+    public function createPdfOffLine(array $result, $numeroFactura, $fechaCarpeta): void
+    {
+        $carpetaPadre = Env::carpetaBackups;
+
+        $carpetaPadre .= "colquechaca";
+        $rutaPdf = GeneratePDF::generate($result['fileSigned'], TipoPdf::pdfOtrosIngresos);
+
+        if (!File::isDirectory($carpetaPadre)) File::makeDirectory($carpetaPadre);
+        $fechaCarpeta = "$carpetaPadre/$fechaCarpeta";
+        if (!File::isDirectory($fechaCarpeta)) File::makeDirectory($fechaCarpeta);
+
+        if (File::isFile($result['fileSigned'])) {
+            rename($result['fileSigned'], "$fechaCarpeta/$numeroFactura.xml");
+            rename($rutaPdf, "$fechaCarpeta/$numeroFactura.pdf");
+        }
     }
 }
