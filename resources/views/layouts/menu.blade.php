@@ -305,22 +305,20 @@
         </a>
         <ul class="treeview-menu">
                 <li>
-                    <a href="{{ route('cooperativas.index') }}"><i
+                    <a href="{{ route('getCompraVenta') }}"><i
                             class="fa fa-institution"></i><span>Sincronizacion</span></a>
                 </li>
             <li>
-                <a href="{{ route('cooperativas.index') }}"><i
+                <a href="{{ route('getCompraVenta') }}"><i
                         class="fa fa-institution"></i><span>Compra Y venta</span></a>
             </li>
             <li>
-                <a href="{{ route('cooperativas.index') }}"><i
+                <a href="{{ route('getExportacionMineral') }}"><i
                         class="fa fa-institution"></i><span>Exportacion Mineral</span></a>
             </li>
             <li>
-                <a href="{{ route('evento.index') }}">
-                    <i class="fa fa-institution"></i>
-                    <span>Evento Significativo</span>
-                </a>
+                <a href="{{ route('evento.index') }}"><i
+                        class="fa fa-institution"></i><span>Evento significativo</span></a>
             </li>
         </ul>
     </li>

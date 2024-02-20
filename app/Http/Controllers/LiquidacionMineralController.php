@@ -116,9 +116,9 @@ class LiquidacionMineralController
                                     1 as cantidad,
                                     220 as unidad_medida,
                                     concat('MINERALES DE ', UPPER(mineral.nombre), ' Y SUS CONCENTRADOS LOTE ', '$venta->lote')  as descripcion,
-                                    '$venta->monto' as precio_unitario,
+                                    '$venta->monto_total' as precio_unitario,
                                     '0' as monto_descuento,
-                                    '$venta->monto' as subtotal
+                                    '$venta->monto_total' as subtotal
                                 FROM mineral
                                     INNER JOIN venta_mineral ON mineral.id = venta_mineral.mineral_id
                                 WHERE venta_id = ?
@@ -129,9 +129,10 @@ class LiquidacionMineralController
                                     mineral.nandina as codigo_producto,
                                     mineral.nandina,
                                     CASE mineral.simbolo
-                                        WHEN 'Ag' THEN (descripcion_leyes *'$venta->kilos_netos_secos'/1000000)
-                                        WHEN 'Pb' THEN (descripcion_leyes *'$venta->kilos_netos_secos'/100)
-                                        WHEN 'Zn' THEN (descripcion_leyes *'$venta->kilos_netos_secos'/100)
+
+                                        WHEN 'Ag' THEN round((descripcion_leyes *'$venta->kilos_netos_secos'/1000000), 5)
+                                        WHEN 'Pb' THEN round((descripcion_leyes *'$venta->kilos_netos_secos'/100), 5)
+                                        WHEN 'Zn' THEN round((descripcion_leyes *'$venta->kilos_netos_secos'/100), 5)
                                     END
                                         as cantidad_extraccion,
                                     CASE cotizacion_oficial.unidad
@@ -144,17 +145,19 @@ class LiquidacionMineralController
                                     cotizacion_oficial.monto as precio_unitario,
                                     descripcion_leyes,
                                     CASE cotizacion_oficial.unidad
-                                        WHEN 'LF' THEN ('$venta->kilos_netos_secos'*descripcion_leyes/100*2.2046223)
-                                        WHEN 'OT' THEN (('$venta->kilos_netos_secos'/31.1035)*(descripcion_leyes/1000))
+                                        WHEN 'LF' THEN (round(('$venta->kilos_netos_secos'*descripcion_leyes/100*2.2046223), 5))
+                                        WHEN 'OT' THEN (round(  (('$venta->kilos_netos_secos'/31.1035)*(descripcion_leyes/1000))  ,5)   )
                                     END
 
                                         as cantidad,
                                     '22' as unidad_medida_extraccion,
                                     '0' as monto_descuento,
+
+                                    round((
                                     cotizacion_oficial.monto * (CASE cotizacion_oficial.unidad
                                         WHEN 'LF' THEN ('$venta->kilos_netos_secos'*descripcion_leyes/100*2.2046223)
                                         WHEN 'OT' THEN (('$venta->kilos_netos_secos'/31.1035)*(descripcion_leyes/1000))
-                                    END) as subtotal
+                                    END)), 5) as subtotal
                                 FROM mineral
                                     INNER JOIN venta_mineral ON mineral.id = venta_mineral.mineral_id
                                     INNER JOIN cotizacion_oficial ON mineral.id = cotizacion_oficial.mineral_id

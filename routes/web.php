@@ -38,6 +38,18 @@ Route::get('leys/register/{id}', 'App\Http\Controllers\LeyController@register')-
 //Route::resource('users', App\Http\Controllers\UserController::class, ['only' => 'show']);
 Route::get('perfil', 'App\Http\Controllers\UserController@perfil')->name('users.perfil');
 
+Route::get('getCompraVenta', [\App\Http\Controllers\CompraVentaController::class, 'index'])->name('getCompraVenta');
+
+Route::post('anularCompraVenta', [\App\Http\Controllers\CompraVentaController::class, 'anulacionCompraVenta'])->name('anularCompraVenta');
+
+
+Route::get('getExportacionMineral', [\App\Http\Controllers\ExportacionMineralController::class, 'index'])->name('getExportacionMineral');
+
+Route::post('anularExportacion', [\App\Http\Controllers\ExportacionMineralController::class, 'anularExportacionMineral'])->name('anularExportacion');
+
+
+
+
 
 
 //Route::resource('formularioLiquidacions', App\Http\Controllers\FormularioLiquidacionController::class);

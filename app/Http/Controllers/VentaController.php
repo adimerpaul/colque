@@ -739,7 +739,7 @@ class VentaController
         $id = $request->idVenta;
         $input=$request->all();
         $venta= VentaFactura::find($id);
-        $input["fecha_emision"] = date('Y-m-d H:i:s');
+      //  $input["fecha_emision"] = date('Y-m-d H:i:s');
         $input["documento_sector_id"] = 4;
         if($request->tipo_factura==TipoFactura::CompraVenta){
             $input["documento_sector_id"] = 5;
@@ -779,7 +779,6 @@ class VentaController
         }
 
         Venta::whereId($id)->update(['monto_total' => $monto]);
-
         $ventaImp = VentaFactura::whereId($id)->first();
 
         //return $ventaImp;

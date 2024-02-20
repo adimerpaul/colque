@@ -33,7 +33,7 @@ class ExportacionMineralController extends Controller
 {
     use CodigoImpuestos, DataXML;
 
-    private $codigoPuntoventa = 1;
+    private $codigoPuntoventa = 0;
     private $codigoDocumentoSector = 20;
 
 
@@ -57,7 +57,10 @@ class ExportacionMineralController extends Controller
 
     public function index()
     {
-        $compraVenta = FacturasImpuestos::where('tipo_factura', 'ExportacionMineral')->orderByDesc('id')->get();
+        $compraVenta = FacturasImpuestos::where('tipo_factura', 'ExportacionMineral')->orderByDesc('id')->paginate();
+
+        return view('facturas_exportacion.index')
+            ->with('facturas', $compraVenta);
         return response()->json(['success' => true, "exportacionMineral" => $compraVenta]);
     }
 
@@ -158,7 +161,7 @@ class ExportacionMineralController extends Controller
 //        ];
         $fechaCarpeta = date('Ymd');
 
-        $this->codigoPuntoVenta = 1;
+        $this->codigoPuntoVenta = 0;
         $this->codigoDocumentoSector = DocumentoSector::ExportacionMineral;
 
 //        DB::beginTransaction();

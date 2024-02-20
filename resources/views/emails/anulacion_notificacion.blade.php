@@ -98,7 +98,7 @@
 
             <p class="text-justify">
                 Puede ver el detalle de su factura anulada en el siguiente enlace: <br>
-                <a href='{{ \App\Patrones\Env::urlQr . "QR?nit=1010413026&cuf={$factura['cuf']}&numero={$factura['numero_factura']}&t=2"  }}'
+                <a href='{{ \App\Patrones\Env::urlQr . "QR?nit=370883022&cuf={$factura['cuf']}&numero={$factura['numero_factura']}&t=2"  }}'
                    target="_blank">Detalle de la factura</a>
             </p>
 

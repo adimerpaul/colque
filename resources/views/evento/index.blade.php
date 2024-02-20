@@ -17,6 +17,7 @@
                     <tr>
                         <th style="width: 10px">#</th>
                         <th>Opciones</th>
+                        <th>Codigo Evento</th>
                         <th>Fecha_inicio</th>
                         <th>Fecha_fin</th>
                         <th>Cuf</th>
@@ -58,6 +59,23 @@
                                     <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cancelar</button>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-result">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Result Evento Significativo</h4>
+                        </div>
+                        <div class="modal-body">
+                            <pre id="result"></pre>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cerrar</button>
                         </div>
                     </div>
                 </div>
@@ -122,20 +140,29 @@
                 success: function (response) {
                     console.log(response);
                     // getEventos();
+                    // modal-result
+                    $('#result').text(JSON.stringify(response, null, 2))
+                    $('#modal-result').modal('show')
                 }
             });
         }
 
 
         function envioPaquetes(id) {
-            // console.log(id);
+            console.log(id);
+            console.log('xxx');
             $.ajax({
                 url: '/envioPaquetes',
                 type: 'POST',
                 data: {id: id, _token: '{{ csrf_token() }}'},
                 success: function (response) {
-                    console.log(response);
+                    // console.log('success');
                     // getEventos();
+                },
+                // finally
+                complete: function (response) {
+                    // console.log('complete');
+                    getEventos();
                 }
             });
         }
@@ -153,8 +180,9 @@
                                 <td>${cont}</td>
                                 <td>
                                     <button type="button" class="btn btn-primary envioPaquetes" data-id="${evento.id}">Enviar</button>
-                                    <button type="button" class="btn btn-info verificar">Verificar</button>
+                                    <button type="button" class="btn btn-info verificar" data-id="${evento.id}">Verificar</button>
                                 </td>
+                                <td>${evento.codigo_recepcion}</td>
                                 <td>${evento.fecha_inicio}</td>
                                 <td>${evento.fecha_fin}</td>
                                 <td>${evento.cufd}</td>

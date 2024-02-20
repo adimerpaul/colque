@@ -32,8 +32,7 @@ use Illuminate\Support\Facades\File;
 class CompraVentaController extends Controller
 {
     use CodigoImpuestos, DataXML;
-
-    private $codigoPuntoventa = 1;
+    private $codigoPuntoventa = 0;
     private $codigoDocumentoSector = 1;
 
 
@@ -58,7 +57,10 @@ class CompraVentaController extends Controller
 
     public function index()
     {
-        $compraVenta = FacturasImpuestos::where('tipo_factura', 'CompraVenta')->orderByDesc('id')->get();
+        $compraVenta = FacturasImpuestos::where('tipo_factura', 'CompraVenta')->orderByDesc('id')->paginate();
+
+        return view('facturas_compraventa.index')
+            ->with('facturas', $compraVenta);
         return response()->json(['success' => true, "compraVenta" => $compraVenta]);
     }
 
@@ -157,7 +159,7 @@ class CompraVentaController extends Controller
 //        ];
         $fechaCarpeta = date('Ymd');
 
-        $this->codigoPuntoVenta = 1;
+        $this->codigoPuntoVenta = 0;
         $this->codigoDocumentoSector = DocumentoSector::CompraVenta;
 
 //        DB::beginTransaction();
@@ -294,6 +296,7 @@ class CompraVentaController extends Controller
 
     public function anulacionCompraVenta(Request $request)
     {
+       // return $request;
             $cuf = $request['cuf'];
             $codigoPuntoVenta = 0;
             $codigoDocumentoSector = DocumentoSector::CompraVenta;

@@ -61,7 +61,7 @@ class GenerateConciliacionPDF
             $textoCredito = "CRÉDITO";
             $montoCredito = $xml->cabecera->creditoFiscalIva;
         }
-        $url = Env::urlQr . "QR?nit=1010413026&cuf=" . $xml->cabecera->cuf . "&numero=" . $xml->cabecera->numeroNotaConciliacion."&t=2";
+        $url = Env::urlQr . "QR?nit=370883022&cuf=" . $xml->cabecera->cuf . "&numero=" . $xml->cabecera->numeroNotaConciliacion."&t=2";
         $qrcode = base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate($url));
         return ('
         <!doctype html>

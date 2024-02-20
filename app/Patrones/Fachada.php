@@ -1533,6 +1533,16 @@ class Fachada
         else {return $valor == 0 ? 'background-color: #FFD6D6;' : '';}
 
     }
+
+    public static function getMotivosAnulacionImpuestos()
+    {
+        return [
+            "1" => "FACTURA MAL EMITIDA",
+            "2" => "NOTA DE CREDITO-DEBITO MAL EMITIDA",
+            "3" => "DATOS DE EMISION INCORRECTOS",
+            "4" => "FACTURA O NOTA DE CREDITO-DEBITO DEVUELTA",
+        ];
+    }
 }
 
 

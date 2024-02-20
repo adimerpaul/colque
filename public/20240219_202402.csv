@@ -1,0 +1,1 @@
+2024-02-19 23:05:44;C:\javi\colquechacamining - impuestos\storage\facturasExportacion/20240219/7336199017_579-signed.xml;Error 1835 [Error], linea: 44, mensaje: Element 'gastosRealizacion': [facet 'minExclusive'] The value '0' must be greater than '0'.<br/>Error 1824 [Error], linea: 61, mensaje: Element 'cantidad': '1.0E-5' is not a valid value of the local atomic type.<br/>

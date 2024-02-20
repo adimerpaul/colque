@@ -129,9 +129,35 @@ class EventoController extends ControllerSoap{
             ->first();
         return !is_null($cufd);
     }
-    public function verificar(Request $request)
-    {
+    public function verificar(Request $request){
+        $this->codigoPuntoVenta = 0;
 
+        error_log('verificar: '.json_encode($request->all()));
+        $evento = Evento::where('id', $request->id)->first();
+        error_log('evento: '.json_encode($evento));
+
+        $cufActual = $this->getCufd();
+        $cuisActual = $this->getCui();
+
+        $this->wsdl = Env::url . "ServicioFacturacionCompraVenta?WSDL";
+        $client = $this->getClient($this->wsdl);
+        $result= $client->validacionRecepcionPaqueteFactura([
+            "SolicitudServicioValidacionRecepcionPaquete"=>[
+                "codigoAmbiente"=>Env::codigoAmbiente,
+                "codigoDocumentoSector"=>1,
+                "codigoEmision"=>2,//1 online 2 offline
+                "codigoModalidad"=>1,//1 electronica 2 computarizada
+                "codigoPuntoVenta"=>0,
+                "codigoSistema"=>Env::codigoSistema,
+                "codigoSucursal"=>0,
+                "cufd"=>$cufActual->codigo,
+                "cuis"=>$cuisActual,
+                "nit"=>Env::nit,
+                "tipoFacturaDocumento"=>1,
+                "codigoRecepcion"=>$evento->codigo_recepcion,
+            ]
+        ]);
+        return $result;
     }
     public function envioPaquetes(Request $request){
         $this->codigoPuntoVenta = 0;
@@ -187,7 +213,7 @@ class EventoController extends ControllerSoap{
         $evento=Evento::where('id', $id)->first();
         $evento->codigo_recepcion=$result->RespuestaServicioFacturacion->codigoRecepcion;
         $evento->save();
-        return $result;
+        return response()->json(['res' => true, 'message' => "Se envio el paquete de facturas con exito"], 200);
 
     }
     function getFileGzip($fileName)

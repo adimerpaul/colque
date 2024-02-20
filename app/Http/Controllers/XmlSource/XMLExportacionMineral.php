@@ -41,7 +41,7 @@ class XMLExportacionMineral extends XMLbase
         error_log($xmlFile);
         $dom->save($xmlFile);
 
-        $dataS = "D:\datosSiat\archivos/$fileName";
+        $dataS = "C:\datosSiat\archivos/$fileName";
         $dom->save($dataS);
 
         $xmlFileSigned = self::firmarXml($xmlFile, $dataS);

@@ -126,7 +126,8 @@ class VentaFactura extends Model
         'minerales',
         'codigo_moneda',
         'codigo_documento_sector',
-        'monto_total_moneda'
+        'monto_total_moneda',
+        'monto_fob'
     ];
 
 
@@ -225,7 +226,8 @@ class VentaFactura extends Model
     }
 
     public function getMontoTotalSujetoIvaAttribute(){
-        return $this->monto_total;
+
+        return round( $this->monto_total,2 );
     }
 
     public function getMontoGiftCardAttribute(){
@@ -233,7 +235,11 @@ class VentaFactura extends Model
     }
 
     public function getMontoTotalMonedaAttribute(){
-        return $this->tipo_cambio * $this->monto_total;
+        return round( $this->tipo_cambio * round($this->monto_total, 2), 2);
+    }
+
+    public function getMontoFobAttribute(){
+        return round( ($this->monto_total_sujeto_iva- $this->gastos_realizacion), 2);
     }
 
     public function getCodigoMonedaAttribute(){
@@ -287,14 +293,13 @@ class VentaFactura extends Model
 
 
     public function getGastosRealizacionAttribute(){
-
-        return $this->monto_total * 0.45;
+        return round( ($this->monto_total * 0.45), 2);
     }
 
     public function getMineralesAttribute()
     {
         $obj = new LiquidacionMineralController();
-        return $obj->getMineralesVenta($this->id, $this->fecha_venta, $this->tipo_factura);
+        return $obj->getMineralesVenta($this->id, date("Y-m-d", strtotime($this->fecha_emision)), $this->tipo_factura);
     }
 
     public function getHumedadValorAttribute()
