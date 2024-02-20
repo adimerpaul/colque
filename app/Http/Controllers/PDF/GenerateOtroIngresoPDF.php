@@ -11,6 +11,12 @@ class GenerateOtroIngresoPDF
 {
     public static function generateHTML($xml, $cuf,$complemento, $enLinea): string
     {
+        if($enLinea){
+            $texto = "Este documento es la Representación Gráfica de un Documento Fiscal Digital emitido en una modalidad de facturación en línea";
+        }
+        else{
+            $texto = "Este documento es la Representación Gráfica de un Documento Fiscal Digital emitido fuera de línea, verifique su envío con su proveedor o en la página web www.impuestos.gob.bo";
+        }
         $formatter = new NumeroALetras();
         $literal = $formatter->toInvoice((float)$xml->cabecera->montoTotal, 2, 'Bolivianos');
         $detalles = "";
@@ -227,7 +233,7 @@ class GenerateOtroIngresoPDF
                         <div class="text-h5">ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAÍS, EL USO ILÍCITO SERÁ SANCIONADO PENALMENTE DE ACUERDO A LEY
                             </div>
                         <div class="text-h5">' . $xml->cabecera->leyenda . '</div>
-                        <div class="text-h5">“Este documento es la Representación Gráfica de un Documento Fiscal Digital emitido en una modalidad de facturación en línea”</div>
+                        <div class="text-h5">' . $texto . '</div>
                     </td>
                     <td>
                         <img width="95px" src="data:image/png;base64,' . $qrcode . '">
