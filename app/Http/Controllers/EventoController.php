@@ -175,10 +175,12 @@ class EventoController extends ControllerSoap{
         if ($evento->tipo==="Compra Venta"){
             $codigoDocumentoSector = 1;
             $tipoFacturaDocumento = 1;
+            $this->wsdl = Env::url . "ServicioFacturacionCompraVenta?WSDL";
         }
         else{
             $codigoDocumentoSector = 20;
             $tipoFacturaDocumento = 2;
+            $this->wsdl = Env::url . "ServicioFacturacionElectronica?WSDL";
         }
         $facturas_impuestos = FacturasImpuestos::where('fechaEmision', '>=', $fecha_inicio)
             ->where('fechaEmision', '<=', $fecha_fin)
@@ -194,7 +196,7 @@ class EventoController extends ControllerSoap{
         $archivo=$this->getFileGzip($archiveName.".gz");
         $hashArchivo=hash('sha256', $archivo);
 
-        $this->wsdl = Env::url . "ServicioFacturacionCompraVenta?WSDL";
+
         $client = $this->getClient($this->wsdl);
 
         $params = array(
@@ -219,7 +221,7 @@ class EventoController extends ControllerSoap{
             ]
         );
         $result = $client->recepcionPaqueteFactura($params);
-//        error_log('result: '.json_encode($result));
+        error_log('result: '.json_encode($result));
         $evento=Evento::where('id', $id)->first();
         $evento->codigo_recepcion=$result->RespuestaServicioFacturacion->codigoRecepcion;
         $evento->save();
