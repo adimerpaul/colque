@@ -41,11 +41,13 @@ Route::get('perfil', 'App\Http\Controllers\UserController@perfil')->name('users.
 Route::get('getCompraVenta', [\App\Http\Controllers\CompraVentaController::class, 'index'])->name('getCompraVenta');
 
 Route::post('anularCompraVenta', [\App\Http\Controllers\CompraVentaController::class, 'anulacionCompraVenta'])->name('anularCompraVenta');
+Route::get('resvertirCompraVenta/{id}', [\App\Http\Controllers\CompraVentaController::class, 'resvertirCompraVenta'])->name('resvertirCompraVenta');
 
 
 Route::get('getExportacionMineral', [\App\Http\Controllers\ExportacionMineralController::class, 'index'])->name('getExportacionMineral');
 
 Route::post('anularExportacion', [\App\Http\Controllers\ExportacionMineralController::class, 'anularExportacionMineral'])->name('anularExportacion');
+Route::get('revertirExportacionMineral/{id}', [\App\Http\Controllers\ExportacionMineralController::class, 'revertirExportacionMineral'])->name('revertirExportacionMineral');
 
 
 

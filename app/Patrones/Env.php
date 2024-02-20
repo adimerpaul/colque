@@ -4,7 +4,7 @@ namespace App\Patrones;
 
 abstract class Env
 {
-    const url = "https://pilotosiatservicios.impuestos.gob.bo/v2/";
+    const url = "https://pilotosassdfsdiatservicios.impuestos.gob.bo/v2/";
     const urlQr = "https://pilotosiat.impuestos.gob.bo/consulta/";
 //    const url = "https://siatrest.impuestos.gob.bo/v2/";
 //    const urlQr = "https://siat.impuestos.gob.bo/consulta/";

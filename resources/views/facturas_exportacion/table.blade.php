@@ -44,10 +44,10 @@
                             <div class="dropdown-menu">
                                 <div class="dropdown-divider"></div>
                                 <a class='dropdown-item'
-                                   href="{{ url('anularCompraVenta', $venta->cufd) }}"
-                                   target="_blank">
+                                   href="{{ url('revertirExportacionMineral', $venta->cuf) }}"
+                                   >
                                     <i class="glyphicon glyphicon-file"></i>
-                                    Anular
+                                    Revertir Anulacion
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class='dropdown-item'
@@ -63,7 +63,7 @@
                                    data-txtid="{{$venta->cuf}}"
                                    data-toggle="modal" data-target="#modalFactura">
                                     <i class="glyphicon glyphicon-usd"></i>
-                                    Generar factura
+                                    Anular factura
                                 </a>
                             </div>
 

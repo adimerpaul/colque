@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\PDF;
 
+use App\Models\FacturasImpuestos;
 use App\Models\TipoMoneda;
 use App\Patrones\TipoPdf;
 use Dompdf\Dompdf;
@@ -37,6 +38,9 @@ class GeneratePDF
         }
 
         $tipoMoneda = TipoMoneda::where('codigo', $xml->codigoMoneda)->first();
+
+        $factura = FacturasImpuestos::where('cuf', $xml->cabecera->cuf)->first();
+        $enLinea = $factura->es_enviado;
 
         if ($type == TipoPdf::pdfOtrosIngresos) {
             $html = GenerateOtroIngresoPDF::generateHTML($xml, $cuf,$complemento);

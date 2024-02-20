@@ -32,7 +32,7 @@ class DataXMLComercialExportacionMinera
             "direccion" => Env::direccion,
             "codigoPuntoVenta" => $this->codigoPuntoVenta,
             "fechaEmision" => $fechaActual,
-            "nombreRazonSocial" => $xml->nombre_razon_social,
+            "nombreRazonSocial" => str_replace("&","&amp;",trim($xml->nombre_razon_social)),
             "direccionComprador" => $xml->direccion_comprador,
             "codigoTipoDocumentoIdentidad" =>  5,
             "numeroDocumento" => $xml->numero_documento,

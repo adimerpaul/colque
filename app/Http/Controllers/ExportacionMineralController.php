@@ -314,6 +314,31 @@ class ExportacionMineralController extends Controller
         }
     }
 
+    public function revertirExportacionMineral($id)
+    {
+
+        $cuf = $id;
+        $codigoPuntoVenta = 0;
+        $codigoDocumentoSector = DocumentoSector::ExportacionMineral;
+        //$codigoMotivo = $request['codigoMotivo'];
+
+
+        $facturacion = new ServicioFacturacionController($codigoDocumentoSector, $codigoPuntoVenta);
+
+        $resultImpuestos = $facturacion->revertirFacturaExportacion($cuf);
+
+        if ($resultImpuestos->transaccion) {
+//            var_dump($resultImpuestos);
+
+            FacturasImpuestos::whereCuf($cuf)->update(['es_anulado' => false]);
+
+            return response()->json(["success" => true, "message" => $resultImpuestos]);
+        } else {
+            $seEnvioemail = false;
+            return response()->json(["success" => false, "message" => $resultImpuestos, "error" => $resultImpuestos->mensajesList, "email" => $seEnvioemail ? "Correo enviado al cliente" : "NO se ha enviado correo al cliente, vuelva a intentarlo o revise el email del cliente"]);
+        }
+    }
+
     /**
      * Display the specified resource.
      *

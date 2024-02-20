@@ -6,6 +6,7 @@ use App\Http\Controllers\EnvioFacturaController;
 use App\Patrones\CodigoEmision;
 use App\Patrones\Env;
 use App\Patrones\TipoFactura;
+use mysql_xdevapi\Exception;
 
 class ServicioFacturacionController extends ControllerSoap
 {
@@ -151,7 +152,7 @@ class ServicioFacturacionController extends ControllerSoap
     public function recepcionEnLineaCompraVenta($request)
     {
         $fileName = $request['fileName'];
-
+        try {
         $archivo = $this->getFileGzipIndividual($fileName);
         $hash256 = hash('sha256', $archivo);
 
@@ -165,8 +166,17 @@ class ServicioFacturacionController extends ControllerSoap
                 ]
         );
 
-        $result = $client->recepcionFactura($params);
-        return $result;
+
+            $result = $client->recepcionFactura($params);
+            return $result;
+
+
+        }
+        catch (\Exception $e){
+            return false;
+        }
+
+
     }
 
     public function recepcionEnLineaLibreConsignacion($request)
@@ -370,6 +380,20 @@ class ServicioFacturacionController extends ControllerSoap
         $result = $client->anulacionFactura($params);
         return $result->RespuestaServicioFacturacion;
     }
+
+    public function reversionFacturaCompraVenta($cuf)
+    {
+        $client = $this->getClient($this->wsdl);
+
+        $params = array(
+            "SolicitudServicioReversionAnulacionFactura" => $this->getParamsCompraVenta(CodigoEmision::EnLinea) + [
+                    "cuf" => $cuf,
+                ]
+        );
+
+        $result = $client->reversionAnulacionFactura($params);
+        return $result->RespuestaServicioFacturacion;
+    }
     public function anulacionFacturaLibre($cuf, $codigoMotivo)
     {
         $client = $this->getClient($this->wsdl);
@@ -396,6 +420,21 @@ class ServicioFacturacionController extends ControllerSoap
         );
 
         $result = $client->anulacionFactura($params);
+        return $result->RespuestaServicioFacturacion;
+    }
+
+
+    public function revertirFacturaExportacion($cuf)
+    {
+        $client = $this->getClient($this->wsdl);
+
+        $params = array(
+            "SolicitudServicioReversionAnulacionFactura" => $this->getParamsExportacionMineral(CodigoEmision::EnLinea) + [
+                    "cuf" => $cuf,
+                ]
+        );
+
+        $result = $client->reversionAnulacionFactura($params);
         return $result->RespuestaServicioFacturacion;
     }
 }
