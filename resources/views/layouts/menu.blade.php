@@ -316,6 +316,10 @@
                 <a href="{{ route('getExportacionMineral') }}"><i
                         class="fa fa-institution"></i><span>Exportacion Mineral</span></a>
             </li>
+            <li>
+                <a href="{{ route('evento.index') }}"><i
+                        class="fa fa-institution"></i><span>Evento significativo</span></a>
+            </li>
         </ul>
     </li>
 

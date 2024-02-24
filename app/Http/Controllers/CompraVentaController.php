@@ -32,7 +32,6 @@ use Illuminate\Support\Facades\File;
 class CompraVentaController extends Controller
 {
     use CodigoImpuestos, DataXML;
-
     private $codigoPuntoventa = 0;
     private $codigoDocumentoSector = 1;
 

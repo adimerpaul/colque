@@ -26,6 +26,7 @@ class FacturasImpuestos extends Model
         'es_anulado',
         'user_id',
         'tipo_factura',
-        'cobranza_id'
+        'cobranza_id',
+        'venta_id',
     ];
 }

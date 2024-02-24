@@ -3,9 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
-class PagoMovimiento extends Migration
-{
+class CreatePagoMovimientoTable extends Migration{
     /**
      * Run the migrations.
      *
@@ -42,3 +40,4 @@ class PagoMovimiento extends Migration
         Schema::dropIfExists('laboratorio.pago_movimiento');
     }
 }
+

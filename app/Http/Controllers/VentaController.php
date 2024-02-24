@@ -779,9 +779,6 @@ class VentaController
         }
 
         Venta::whereId($id)->update(['monto_total' => $monto]);
-
-
-
         $ventaImp = VentaFactura::whereId($id)->first();
 
         //return $ventaImp;

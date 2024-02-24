@@ -226,6 +226,7 @@ class VentaFactura extends Model
     }
 
     public function getMontoTotalSujetoIvaAttribute(){
+
         return round( $this->monto_total,2 );
     }
 
@@ -292,7 +293,6 @@ class VentaFactura extends Model
 
 
     public function getGastosRealizacionAttribute(){
-
         return round( ($this->monto_total * 0.45), 2);
     }
 

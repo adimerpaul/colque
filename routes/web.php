@@ -358,7 +358,16 @@ Route::group(['middleware' => ['contabilidad']], function () {
 });
 Route::group(['middleware' => ['contabilidadComercialInvitado']], function () {
     Route::resource('cooperativas', App\Http\Controllers\CooperativaController::class, ['except' => ['destroy']]);
-
+    Route::get('evento', [App\Http\Controllers\EventoController::class, 'evento'])->name('evento.index');
+    Route::get('eventos', [App\Http\Controllers\EventoController::class, 'eventos']);
+    Route::get('cufs', [App\Http\Controllers\EventoController::class, 'cufs']);
+//    motivoEvento
+    Route::get('motivoEvento', [App\Http\Controllers\EventoController::class, 'motivoEvento']);
+    Route::post('createEvento', [App\Http\Controllers\EventoController::class, 'createEvento']);
+    Route::get('createCuf', [App\Http\Controllers\EventoController::class, 'createCuf']);
+//    envioPaquetes
+    Route::post('envioPaquetes', [App\Http\Controllers\EventoController::class, 'envioPaquetes']);
+    Route::post('verificar', [App\Http\Controllers\EventoController::class, 'verificar']);
 });
 Route::group(['middleware' => ['contabilidadComercialOperaciones']], function () {
     Route::resource('formularioLiquidacions', App\Http\Controllers\FormularioLiquidacionController::class, ['only' => ['index']]);

@@ -129,6 +129,7 @@ class LiquidacionMineralController
                                     mineral.nandina as codigo_producto,
                                     mineral.nandina,
                                     CASE mineral.simbolo
+
                                         WHEN 'Ag' THEN round((descripcion_leyes *'$venta->kilos_netos_secos'/1000000), 5)
                                         WHEN 'Pb' THEN round((descripcion_leyes *'$venta->kilos_netos_secos'/100), 5)
                                         WHEN 'Zn' THEN round((descripcion_leyes *'$venta->kilos_netos_secos'/100), 5)
@@ -151,6 +152,7 @@ class LiquidacionMineralController
                                         as cantidad,
                                     '22' as unidad_medida_extraccion,
                                     '0' as monto_descuento,
+
                                     round((
                                     cotizacion_oficial.monto * (CASE cotizacion_oficial.unidad
                                         WHEN 'LF' THEN ('$venta->kilos_netos_secos'*descripcion_leyes/100*2.2046223)
