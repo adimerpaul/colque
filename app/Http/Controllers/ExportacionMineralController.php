@@ -284,7 +284,8 @@ class ExportacionMineralController extends Controller
             'es_enviado' => true,
             'es_anulado' => false,
             'tipo_factura' => 'ExportacionMineral',
-            'user_id' => 1
+            'user_id' => 1,
+            'venta_id' => $request['id']
         ]);
 
         return $ley;

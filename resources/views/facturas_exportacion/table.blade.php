@@ -70,6 +70,11 @@
                                     <i class="glyphicon glyphicon-usd"></i>
                                     Anular factura
                                 </a>
+                                <div class="dropdown-divider"></div>
+                                <a class='dropdown-item' onclick="enviarCorreo('{{$venta->id}}')">
+                                    <i class="glyphicon glyphicon-envelope"></i>
+                                    Envio de correo
+                                </a>
                             </div>
 
                         </div>
@@ -91,6 +96,16 @@
             modal.find('.modal-body #idVenta').val(id);
 
         })
+        enviarCorreo = function (id) {
+            $.ajax({
+                url: '<?php echo e(url('enviarCorreo')); ?>',
+                type: 'GET',
+                data: {id: id},
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+        }
 
 
     </script>

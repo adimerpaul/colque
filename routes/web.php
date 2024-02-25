@@ -368,6 +368,8 @@ Route::group(['middleware' => ['contabilidadComercialInvitado']], function () {
 //    envioPaquetes
     Route::post('envioPaquetes', [App\Http\Controllers\EventoController::class, 'envioPaquetes']);
     Route::post('verificar', [App\Http\Controllers\EventoController::class, 'verificar']);
+//    enviarCorreo
+    Route::get('enviarCorreo', [App\Http\Controllers\EventoController::class, 'enviarCorreo']);
 });
 Route::group(['middleware' => ['contabilidadComercialOperaciones']], function () {
     Route::resource('formularioLiquidacions', App\Http\Controllers\FormularioLiquidacionController::class, ['only' => ['index']]);
