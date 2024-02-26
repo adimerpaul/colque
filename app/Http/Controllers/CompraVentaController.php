@@ -15,8 +15,12 @@ use App\Http\Controllers\XmlSource\XMLCompraVenta;
 use App\Http\Controllers\XmlSource\XMLDocumentoAjuste;
 use App\Http\Controllers\XmlSource\XMLLibreConsignacion;
 use App\Http\Controllers\XmlSource\XMLServicioBasico;
+use App\Mail\AnulacionMailable;
+use App\Mail\EmailMailable;
+use App\Models\Comprador;
 use App\Models\Cui;
 use App\Models\FacturasImpuestos;
+use App\Models\Venta;
 use App\Patrones\ActividadEconomica;
 use App\Patrones\CodigoEmision;
 use App\Patrones\DocumentoSector;
@@ -28,6 +32,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
 
 class CompraVentaController extends Controller
 {
@@ -356,7 +361,9 @@ class CompraVentaController extends Controller
 
             $resultImpuestos = $facturacion->anulacionFacturaCompraVenta($cuf, $codigoMotivo);
 
-            if ($resultImpuestos->transaccion) {
+            $this->AnulacionFactura($cuf);
+
+        if ($resultImpuestos->transaccion) {
 //            var_dump($resultImpuestos);
 
                 FacturasImpuestos::whereCuf($cuf)->update(['es_anulado' => true]);
@@ -471,5 +478,17 @@ class CompraVentaController extends Controller
             rename($result['fileSigned'], "$fechaCarpeta/$numeroFactura.xml");
             rename($rutaPdf, "$fechaCarpeta/$numeroFactura.pdf");
         }
+    }
+
+    /**
+     * @param $cuf
+     * @return void
+     */
+    public function AnulacionFactura($cuf): void
+    {
+        $factura = FacturasImpuestos::whereCuf($cuf)->first();
+        $venta = Venta::whereId($factura->venta_id)->first();
+        $comprador = Comprador::whereId($venta->comprador_id)->first();
+        Mail::to($comprador->email)->send(new AnulacionMailable($factura));
     }
 }

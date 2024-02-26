@@ -15,8 +15,11 @@ use App\Http\Controllers\XmlSource\XMLDocumentoAjuste;
 use App\Http\Controllers\XmlSource\XMLExportacionMineral;
 use App\Http\Controllers\XmlSource\XMLLibreConsignacion;
 use App\Http\Controllers\XmlSource\XMLServicioBasico;
+use App\Mail\AnulacionMailable;
+use App\Models\Comprador;
 use App\Models\Cui;
 use App\Models\FacturasImpuestos;
+use App\Models\Venta;
 use App\Patrones\ActividadEconomica;
 use App\Patrones\CodigoEmision;
 use App\Patrones\DocumentoSector;
@@ -28,6 +31,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
 
 class ExportacionMineralController extends Controller
 {
@@ -333,6 +337,7 @@ class ExportacionMineralController extends Controller
         $facturacion = new ServicioFacturacionController($codigoDocumentoSector, $codigoPuntoVenta);
 
         $resultImpuestos = $facturacion->anulacionFacturaExportacion($cuf, $codigoMotivo);
+        $this->AnulacionFactura($cuf);
 
         if ($resultImpuestos->transaccion) {
 //            var_dump($resultImpuestos);
@@ -344,6 +349,13 @@ class ExportacionMineralController extends Controller
             $seEnvioemail = false;
             return response()->json(["success" => false, "message" => $resultImpuestos, "error" => $resultImpuestos->mensajesList, "email" => $seEnvioemail ? "Correo enviado al cliente" : "NO se ha enviado correo al cliente, vuelva a intentarlo o revise el email del cliente"]);
         }
+    }
+    public function AnulacionFactura($cuf): void
+    {
+        $factura = FacturasImpuestos::whereCuf($cuf)->first();
+        $venta = Venta::whereId($factura->venta_id)->first();
+        $comprador = Comprador::whereId($venta->comprador_id)->first();
+        Mail::to($comprador->email)->send(new AnulacionMailable($factura));
     }
 
     public function revertirExportacionMineral($id)

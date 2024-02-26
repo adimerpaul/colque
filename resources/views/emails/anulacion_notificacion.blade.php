@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SeLA - Oruro | Notificaciones</title>
+    <title>Colquechaca - Anulación de factura</title>
     <style type="text/css">
         .padre {
             padding: 0 1rem;
@@ -72,22 +72,19 @@
             <hr>
             <div style="font-size: large">
                 <p class="text-justify">
-                    Estimado (a) cliente: {{ $factura['razon_social']  }} <br>
-                    @if(isset($factura['tipo']))
-                        Le informamos que su {{ $factura['tipo'] }} ha sido <strong>ANULADA</strong>:
-                    @else
-                        Le informamos que su factura electrónica ha sido <strong>ANULADA</strong>:
-                    @endif
+                    Estimado (a) cliente: <br>
+
+                    Le informamos que su factura electrónica ha sido <strong>ANULADA</strong>:
                 </p>
 
                 <table style="width: 100%">
                     <tr>
                         <td class="text-right" style="width: 50%"><strong>Número:</strong></td>
-                        <td>{{ $factura['numero_factura'] }}</td>
+                        <td>{{ $factura['nroFactura'] }}</td>
                     </tr>
                     <tr>
                         <td class="text-right" style="width: 50%"><strong>Fecha de pago:</strong></td>
-                        <td>{{ date("d/m/Y", strtotime($factura['fecha_emision']))  }}</td>
+                        <td>{{ date("d/m/Y", strtotime($factura['fechaEmision']))  }}</td>
                     </tr>
                     <tr>
                         <td class="text-right" style="width: 50%"><strong>Código de Autorización:</strong></td>
@@ -98,7 +95,7 @@
 
             <p class="text-justify">
                 Puede ver el detalle de su factura anulada en el siguiente enlace: <br>
-                <a href='{{ \App\Patrones\Env::urlQr . "QR?nit=370883022&cuf={$factura['cuf']}&numero={$factura['numero_factura']}&t=2"  }}'
+                <a href='{{ \App\Patrones\Env::urlQr . "QR?nit=370883022&cuf={$factura['cuf']}&numero={$factura['nroFactura']}&t=2"  }}'
                    target="_blank">Detalle de la factura</a>
             </p>
 
@@ -116,18 +113,18 @@
         <div class="hijo text-muted">
             <hr>
 
-            <table style="width: 100%">
-                <tr>
-                    <td>
-                        Dir: Av. Villarroel #222 entre Backovick y Brasil <br>
-                        &copy; {{ date('Y') }} - SeLA - ORURO
-                    </td>
-                    <td class="text-right">
-                        Teléfono: 52-35947 <br>
-                        Celular:71880887
-                    </td>
-                </tr>
-            </table>
+{{--            <table style="width: 100%">--}}
+{{--                <tr>--}}
+{{--                    <td>--}}
+{{--                        Dir: Av. Villarroel #222 entre Backovick y Brasil <br>--}}
+{{--                        &copy; {{ date('Y') }} - SeLA - ORURO--}}
+{{--                    </td>--}}
+{{--                    <td class="text-right">--}}
+{{--                        Teléfono: 52-35947 <br>--}}
+{{--                        Celular:71880887--}}
+{{--                    </td>--}}
+{{--                </tr>--}}
+{{--            </table>--}}
         </div>
     </div>
 </footer>
