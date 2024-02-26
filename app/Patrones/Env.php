@@ -4,7 +4,7 @@ namespace App\Patrones;
 
 abstract class Env
 {
-    const url = "https://asaspilotosiatservicios.impuestos.gob.bo/v2/";
+    const url = "https://pilotosiatservicios.impuestos.gob.bo/v2/";
     const urlQr = "https://pilotosiat.impuestos.gob.bo/consulta/";
 //    const url = "https://siatrest.impuestos.gob.bo/v2/";
 //    const urlQr = "https://siat.impuestos.gob.bo/consulta/";
@@ -44,6 +44,9 @@ abstract class Env
     const codigoMonedaDolar = 2;
     const cantidad = 1;
 
-    const carpetaBackups = "D:\impuestos/";
+//<<<<<<< HEAD
+//    const carpetaBackups = "D:\impuestos/";
+//=======
+    const carpetaBackups = "C:\impuestos/";
     const cafc = '1136CE62378D';  //facturacion fuera de linea
 }

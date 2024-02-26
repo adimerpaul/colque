@@ -32,9 +32,9 @@
                         {!! Form::number('tipo_cambio', '6.96', ['class' => 'form-control', 'required', 'maxlength' => '6','step'=>'0.01', 'min' =>'0']) !!}
                     </div>
 
-                    <div class="form-group col-sm-12">
+                    <div class="form-group col-sm-12" div="divUnidad">
                         {!! Form::label('unidad_id', 'Unidad medida :*') !!}
-                        {!! Form::select('unidad_id', \App\ Patrones\Fachada::listarParametricasImpuestos(\App\Patrones\TipoImpuestos::UnidadMedida), null, ['class' => 'form-control', 'required']) !!}
+                        {!! Form::select('unidad_id', \App\ Patrones\Fachada::listarParametricasImpuestos(\App\Patrones\TipoImpuestos::UnidadMedida), null, ['class' => 'form-control']) !!}
                     </div>
 
                     <div id="divExportacion">
@@ -129,6 +129,7 @@
             const monto = document.getElementById('monto_total');
             if (document.getElementById("tipo_factura").value == 'Compra Venta') {
                 $("#divMonto").show();
+                $("#divUnidad").show();
                 $("#divExportacion").hide();
                 destino.removeAttribute('required', '');
                 leyAg.removeAttribute('required', '');
@@ -140,6 +141,7 @@
                 monto.setAttribute('required', '');
             } else {
                 $("#divMonto").hide();
+                $("#divUnidad").hide();
                 $("#divExportacion").show();
                 destino.setAttribute('required', '');
                 leyAg.setAttribute('required', '');

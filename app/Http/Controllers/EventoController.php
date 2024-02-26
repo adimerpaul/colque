@@ -7,6 +7,9 @@ use App\Http\Controllers\FirmaDigital\MiFirmador;
 use App\Http\Controllers\Impuestos\CodigoImpuestos;
 use App\Http\Controllers\Impuestos\ControllerSoap;
 use App\Http\Controllers\Impuestos\ServicioCodigoController;
+use App\Mail\EmailMailable;
+use App\Mail\TestMail;
+use App\Models\Comprador;
 use App\Models\Cufd;
 use App\Models\Evento;
 use App\Models\FacturasImpuestos;
@@ -18,6 +21,7 @@ use App\Patrones\TipoFactura;
 use DateTime;
 use DOMDocument;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Phar;
 use PharData;
 use SimpleXMLElement;
@@ -131,6 +135,19 @@ class EventoController extends ControllerSoap{
             ->first();
         return !is_null($cufd);
     }
+    public function enviarCorreo(Request $request){
+        $factura = FacturasImpuestos::find($request->id);
+//        error_log('factura: '.json_encode($factura));
+        $venta = VentaFactura::where('id', $factura->venta_id)->first();
+//        error_log('venta: '.json_encode($venta));
+        $comprador = Comprador::where('id', $venta->comprador_id)->first();
+//        error_log('comprador: '.json_encode($comprador));
+        Mail::to($comprador->email)->send(new EmailMailable($comprador,$factura));
+        return response()->json([
+            'res' => true,
+            'message' => "Se envio el correo con exito"
+        ], 200);
+    }
     public function verificar(Request $request){
         $this->codigoPuntoVenta = 0;
 
@@ -175,10 +192,12 @@ class EventoController extends ControllerSoap{
         if ($evento->tipo==="Compra Venta"){
             $codigoDocumentoSector = 1;
             $tipoFacturaDocumento = 1;
+            $this->wsdl = Env::url . "ServicioFacturacionCompraVenta?WSDL";
         }
         else{
             $codigoDocumentoSector = 20;
             $tipoFacturaDocumento = 2;
+            $this->wsdl = Env::url . "ServicioFacturacionElectronica?WSDL";
         }
         $facturas_impuestos = FacturasImpuestos::where('fechaEmision', '>=', $fecha_inicio)
             ->where('fechaEmision', '<=', $fecha_fin)
@@ -194,7 +213,7 @@ class EventoController extends ControllerSoap{
         $archivo=$this->getFileGzip($archiveName.".gz");
         $hashArchivo=hash('sha256', $archivo);
 
-        $this->wsdl = Env::url . "ServicioFacturacionCompraVenta?WSDL";
+
         $client = $this->getClient($this->wsdl);
 
         $params = array(
@@ -219,7 +238,7 @@ class EventoController extends ControllerSoap{
             ]
         );
         $result = $client->recepcionPaqueteFactura($params);
-//        error_log('result: '.json_encode($result));
+        error_log('result: '.json_encode($result));
         $evento=Evento::where('id', $id)->first();
         $evento->codigo_recepcion=$result->RespuestaServicioFacturacion->codigoRecepcion;
         $evento->save();

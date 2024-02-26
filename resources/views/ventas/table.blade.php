@@ -20,10 +20,12 @@
             <tr>
                 <td class="text-muted">{{ $page + ($row++) }}</td>
                 <td>
-                    @if(\App\Patrones\Permiso::esComercial() OR \App\Patrones\Permiso::esOperaciones())
+                    @if(\App\Patrones\Permiso::esComercial())
                         <a href="{{ route('ventas.edit', [$venta->id]) }}">
                             <strong>{{ $venta->lote }}</strong>
                         </a>
+                    @elseif(\App\Patrones\Permiso::esOperaciones())
+                            <strong>{{ $venta->lote }}</strong>
                     @else
                         <a href="{{ route('get-composito', [$venta->id]) }}">
                             <strong>{{ $venta->lote }}</strong>
@@ -71,13 +73,13 @@
                                     <i class="fa fa-file-text-o"></i>
                                     Orden Venta
                                 </a>
-                                <div class="dropdown-divider"></div>
-                                <a class='dropdown-item' href="#"
-                                   data-txtid="{{$venta->id}}"
-                                   data-toggle="modal" data-target="#modalFactura">
-                                    <i class="glyphicon glyphicon-usd"></i>
-                                    Generar factura
-                                </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class='dropdown-item' href="#"
+                                       data-txtid="{{$venta->id}}"
+                                       data-toggle="modal" data-target="#modalFactura">
+                                        <i class="glyphicon glyphicon-usd"></i>
+                                        Generar factura
+                                    </a>
                             </div>
 
                         </div>

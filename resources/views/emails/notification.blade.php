@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SeLA - Oruro | Notificaciones</title>
+    <title>Colquencha</title>
     <style type="text/css">
         .padre {
             padding: 0 1rem;
@@ -59,7 +59,7 @@
                              width="50px">
                     </td>
                     <td>
-                        <h3>SeLA - ORURO</h3>
+                        <h3>Colquencha</h3>
                     </td>
                     <td class="text-right">
                     </td>
@@ -72,29 +72,29 @@
             <hr>
             <div style="font-size: large">
                 <p class="text-justify">
-                    Estimado (a) cliente: {{ $factura['nombre']  }} <br>
+                    Estimado (a) cliente: {{ $comprador['razon_social']  }} <br>
                     En el documento adjunto encontrará su factura electrónica:
                 </p>
 
-                <table style="width: 100%">
-                    <tr>
-                        <td class="text-right" style="width: 50%"><strong>Factura:</strong></td>
-                        <td>{{ $factura['numero_factura'] }}</td>
-                    </tr>
-                    <tr>
-                        <td class="text-right" style="width: 50%"><strong>Monto facturado:</strong></td>
-                        <td>{{ $factura['monto'] }} Bs.</td>
-                    </tr>
-                    <tr>
-                        @if($codigoDocumentoSector === \App\Patrones\DocumentoSector::ServiciosBasicos )
-                            <td class="text-right" style="width: 50%"><strong>Período facturado:</strong></td>
-                            <td>{{ $factura['periodo']  }}</td>
-                        @else
-                            <td class="text-right" style="width: 50%"><strong>Fecha de pago:</strong></td>
-                            <td>{{ date("d/m/Y", strtotime($factura['fecha']))  }}</td>
-                        @endif
-                    </tr>
-                </table>
+{{--                <table style="width: 100%">--}}
+{{--                    <tr>--}}
+{{--                        <td class="text-right" style="width: 50%"><strong>Factura:</strong></td>--}}
+{{--                        <td>{{ $factura['numero_factura'] }}</td>--}}
+{{--                    </tr>--}}
+{{--                    <tr>--}}
+{{--                        <td class="text-right" style="width: 50%"><strong>Monto facturado:</strong></td>--}}
+{{--                        <td>{{ $factura['monto'] }} Bs.</td>--}}
+{{--                    </tr>--}}
+{{--                    <tr>--}}
+{{--                        @if($codigoDocumentoSector === \App\Patrones\DocumentoSector::ServiciosBasicos )--}}
+{{--                            <td class="text-right" style="width: 50%"><strong>Período facturado:</strong></td>--}}
+{{--                            <td>{{ $factura['periodo']  }}</td>--}}
+{{--                        @else--}}
+{{--                            <td class="text-right" style="width: 50%"><strong>Fecha de pago:</strong></td>--}}
+{{--                            <td>{{ date("d/m/Y", strtotime($factura['fecha']))  }}</td>--}}
+{{--                        @endif--}}
+{{--                    </tr>--}}
+{{--                </table>--}}
             </div>
 
             <p class="text-justify">
@@ -110,18 +110,18 @@
         <div class="hijo text-muted">
             <hr>
 
-            <table style="width: 100%">
-                <tr>
-                    <td>
-                        Dir: Av. Villarroel #222 entre Backovick y Brasil <br>
-                        &copy; {{ date('Y') }} - SeLA - ORURO
-                    </td>
-                    <td class="text-right">
-                        Teléfono: 52-35947 <br>
-                        Celular:71880887
-                    </td>
-                </tr>
-            </table>
+{{--            <table style="width: 100%">--}}
+{{--                <tr>--}}
+{{--                    <td>--}}
+{{--                        Dir: Av. Villarroel #222 entre Backovick y Brasil <br>--}}
+{{--                        &copy; {{ date('Y') }} - SeLA - ORURO--}}
+{{--                    </td>--}}
+{{--                    <td class="text-right">--}}
+{{--                        Teléfono: 52-35947 <br>--}}
+{{--                        Celular:71880887--}}
+{{--                    </td>--}}
+{{--                </tr>--}}
+{{--            </table>--}}
         </div>
     </div>
 </footer>
