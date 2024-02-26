@@ -44,6 +44,9 @@ abstract class Env
     const codigoMonedaDolar = 2;
     const cantidad = 1;
 
+//<<<<<<< HEAD
+//    const carpetaBackups = "D:\impuestos/";
+//=======
     const carpetaBackups = "C:\impuestos/";
     const cafc = '1136CE62378D';  //facturacion fuera de linea
 }
